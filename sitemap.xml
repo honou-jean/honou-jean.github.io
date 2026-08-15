@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://YOUR_DOMAIN/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://YOUR_DOMAIN/profile.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR_DOMAIN/expertise.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR_DOMAIN/background.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR_DOMAIN/projects.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://YOUR_DOMAIN/thesis.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://YOUR_DOMAIN/teaching.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR_DOMAIN/contact.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR_DOMAIN/projects/multimodal-biometrics.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR_DOMAIN/projects/poisson-processes.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR_DOMAIN/projects/scientific-computing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://YOUR_DOMAIN/teaching/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+</urlset>

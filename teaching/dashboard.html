@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tableau de bord étudiant — Koessivi Jean HONOU</title>
+  <meta name="description" content="Espace privé réservé aux étudiants authentifiés.">
+  <meta name="author" content="Koessivi Jean HONOU">
+  <meta name="theme-color" content="#0b1f33">
+  <meta name="referrer" content="same-origin">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/teaching.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.102.0" defer></script>
+  <script src="../assets/js/supabase-config.js" defer></script>
+  <script src="../assets/js/supabase-client.js" defer></script>
+  <script src="../assets/js/teaching-portal.js" defer></script>
+</head>
+<body class="portal-page" data-portal-page="dashboard">
+  <a class="skip-link" href="#main" data-portal-i18n="a11y.skip">Aller au contenu</a>
+
+  <header class="portal-header">
+    <nav class="container portal-nav" aria-label="Navigation de l’espace étudiant" data-portal-i18n-aria="a11y.navigation">
+      <a class="brand portal-brand" href="index.html" aria-label="Accueil du portail" data-portal-i18n-aria="header.portalHome">
+        <span aria-hidden="true">KJ</span>
+        <strong class="portal-brand-copy"><span>HONOU</span><small data-portal-i18n="header.portal">Espace étudiant</small></strong>
+      </a>
+      <button class="portal-sign-out" id="portal-sign-out" type="button" hidden data-portal-i18n="header.signOut">Se déconnecter</button>
+      <div class="language-switcher portal-language" aria-label="Choix de la langue" data-portal-i18n-aria="a11y.language">
+        <button type="button" data-lang="fr" class="active" aria-pressed="true">FR</button><span aria-hidden="true">|</span><button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="portal-dashboard-hero">
+      <div class="container">
+        <p class="eyebrow" data-portal-i18n="dashboard.eyebrow">Espace privé</p>
+        <h1 data-portal-i18n="dashboard.title">Mon espace de travail</h1>
+        <p class="portal-lead" data-portal-i18n="dashboard.lead">Retrouvez ici les informations accessibles à votre session authentifiée.</p>
+        <p class="portal-dashboard-greeting" id="dashboard-greeting" hidden></p>
+      </div>
+    </section>
+
+    <section class="portal-dashboard-main">
+      <div class="container">
+        <div class="portal-gate" id="dashboard-gate" aria-live="polite">
+          <span class="portal-gate-mark" aria-hidden="true">KJ</span>
+          <div><h2 id="dashboard-gate-title" data-portal-i18n="dashboard.checking">Vérification de votre session…</h2><p id="dashboard-gate-text" data-portal-i18n="common.checking">Vérification de la configuration…</p><a class="button primary" id="dashboard-gate-action" href="login.html" data-portal-i18n="dashboard.goToLogin">Aller à la connexion</a><button class="button primary" id="dashboard-retry" type="button" data-portal-i18n="common.retry" hidden>Réessayer</button></div>
+        </div>
+
+        <div class="portal-dashboard-content" id="dashboard-content" hidden>
+          <p class="portal-data-status" id="dashboard-data-status" role="status" aria-live="polite" hidden></p>
+
+          <div class="portal-dashboard-grid">
+            <section class="portal-dashboard-card" aria-labelledby="todo-title">
+              <div class="portal-card-heading"><span aria-hidden="true">01</span><h2 id="todo-title" data-portal-i18n="dashboard.todo">À faire</h2></div>
+              <div class="portal-list" id="todo-list"><p class="portal-empty" data-portal-i18n="common.loading">Chargement…</p></div>
+            </section>
+
+            <section class="portal-dashboard-card" aria-labelledby="resources-title">
+              <div class="portal-card-heading"><span aria-hidden="true">02</span><h2 id="resources-title" data-portal-i18n="dashboard.resources">Ressources</h2></div>
+              <div class="portal-list" id="resources-list"><p class="portal-empty" data-portal-i18n="common.loading">Chargement…</p></div>
+            </section>
+
+            <section class="portal-dashboard-card portal-dashboard-card-wide" aria-labelledby="submissions-title">
+              <div class="portal-card-heading"><span aria-hidden="true">03</span><h2 id="submissions-title" data-portal-i18n="dashboard.submissions">Mes dépôts</h2></div>
+              <div class="portal-list" id="submissions-list"><p class="portal-empty" data-portal-i18n="common.loading">Chargement…</p></div>
+
+              <form class="portal-private-form" id="submission-form" novalidate aria-describedby="submission-file-help submission-status">
+                <div class="portal-form-heading"><h3 data-portal-i18n="dashboard.submissionTitle">Déposer un travail</h3><p data-portal-i18n="dashboard.submissionIntro">Le dépôt est activé uniquement avec une session valide et un backend authentifié.</p></div>
+                <div class="portal-field">
+                  <label for="submission-assignment" data-portal-i18n="dashboard.assignment">Activité concernée</label>
+                  <select id="submission-assignment" name="assignmentId" required disabled><option value="" selected disabled data-portal-i18n="dashboard.selectAssignment">Sélectionner une activité</option></select>
+                </div>
+                <div class="portal-field">
+                  <label for="submission-file" data-portal-i18n="dashboard.files">Fichiers</label>
+                  <input id="submission-file" name="files" type="file" accept=".pdf,.docx,.odt,.txt,.png,.jpg,.jpeg,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.oasis.opendocument.text,text/plain,image/png,image/jpeg" multiple required disabled aria-describedby="submission-file-help">
+                  <small id="submission-file-help" data-portal-i18n="dashboard.filesHelp">PDF, DOCX, ODT, TXT, PNG ou JPEG. 5 fichiers maximum et 6 Mo chacun. Le serveur doit refaire ces contrôles.</small>
+                </div>
+                <div class="portal-field">
+                  <label for="submission-message" data-portal-i18n="dashboard.message">Message facultatif</label>
+                  <textarea id="submission-message" name="message" rows="3" maxlength="1000" disabled placeholder="Ajouter une précision utile…" data-portal-i18n-placeholder="dashboard.messagePlaceholder"></textarea>
+                </div>
+                <button class="button primary" type="submit" disabled data-portal-i18n="dashboard.upload">Envoyer le dépôt</button>
+                <p class="portal-form-message" id="submission-status" role="status" aria-live="polite" hidden></p>
+              </form>
+            </section>
+
+            <section class="portal-dashboard-card portal-dashboard-card-wide" aria-labelledby="questions-title">
+              <div class="portal-card-heading"><span aria-hidden="true">04</span><h2 id="questions-title" data-portal-i18n="dashboard.questions">Mes questions</h2></div>
+              <div class="portal-list" id="questions-list"><p class="portal-empty" data-portal-i18n="common.loading">Chargement…</p></div>
+
+              <form class="portal-private-form" id="question-form" novalidate aria-describedby="question-status">
+                <div class="portal-form-heading"><h3 data-portal-i18n="dashboard.questionTitle">Poser une question</h3><p data-portal-i18n="dashboard.questionIntro">Votre question sera envoyée uniquement au service authentifié.</p></div>
+                <div class="portal-field">
+                  <label for="question-assignment" data-portal-i18n="dashboard.assignment">Activité concernée</label>
+                  <select id="question-assignment" name="assignmentId" required disabled><option value="" selected disabled data-portal-i18n="dashboard.selectAssignment">Sélectionner une activité</option></select>
+                </div>
+                <div class="portal-field">
+                  <label for="question-message" data-portal-i18n="dashboard.questionMessage">Question</label>
+                  <textarea id="question-message" name="message" rows="5" minlength="5" maxlength="1500" required disabled placeholder="Formulez votre question sans inclure de donnée sensible inutile…" data-portal-i18n-placeholder="dashboard.questionPlaceholder"></textarea>
+                </div>
+                <button class="button primary" type="submit" disabled data-portal-i18n="dashboard.sendQuestion">Envoyer la question</button>
+                <p class="portal-form-message" id="question-status" role="status" aria-live="polite" hidden></p>
+              </form>
+            </section>
+          </div>
+
+          <aside class="portal-rls-note"><strong>RLS</strong><p data-portal-i18n="dashboard.rlsNote">Le masquage de cette interface est une protection d’usage. L’autorisation réelle des données doit toujours être appliquée par les politiques RLS du backend.</p></aside>
+        </div>
+      </div>
+    </section>
+
+    <noscript><div class="container portal-noscript">JavaScript est nécessaire pour vérifier la session. Le contenu privé reste masqué sans cette vérification.</div></noscript>
+  </main>
+
+  <footer class="portal-footer">
+    <div class="container portal-footer-inner"><p><span data-portal-i18n="footer.label">Espace étudiant de Koessivi Jean HONOU</span> · <span id="portal-year"></span></p><p data-portal-i18n="footer.privacy">Accès privé protégé par le service d’authentification.</p></div>
+  </footer>
+</body>
+</html>

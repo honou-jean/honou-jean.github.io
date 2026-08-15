@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connexion à l’espace étudiant — Koessivi Jean HONOU</title>
+  <meta name="description" content="Connexion sécurisée à l’espace étudiant.">
+  <meta name="author" content="Koessivi Jean HONOU">
+  <meta name="theme-color" content="#0b1f33">
+  <meta name="referrer" content="same-origin">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/teaching.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.102.0" defer></script>
+  <script src="../assets/js/supabase-config.js" defer></script>
+  <script src="../assets/js/supabase-client.js" defer></script>
+  <script src="../assets/js/teaching-portal.js" defer></script>
+</head>
+<body class="portal-page" data-portal-page="login">
+  <a class="skip-link" href="#main" data-portal-i18n="a11y.skip">Aller au contenu</a>
+
+  <header class="portal-header">
+    <nav class="container portal-nav" aria-label="Navigation de l’espace étudiant" data-portal-i18n-aria="a11y.navigation">
+      <a class="brand portal-brand" href="index.html" aria-label="Accueil du portail" data-portal-i18n-aria="header.portalHome">
+        <span aria-hidden="true">KJ</span>
+        <strong class="portal-brand-copy"><span>HONOU</span><small data-portal-i18n="header.portal">Espace étudiant</small></strong>
+      </a>
+      <a class="portal-back-link" href="index.html"><span aria-hidden="true">←</span><span data-portal-i18n="login.back">Retour à l’accueil du portail</span></a>
+      <div class="language-switcher portal-language" aria-label="Choix de la langue" data-portal-i18n-aria="a11y.language">
+        <button type="button" data-lang="fr" class="active" aria-pressed="true">FR</button><span aria-hidden="true">|</span><button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="portal-auth-main">
+    <section class="container portal-auth-grid" aria-labelledby="login-title">
+      <div class="portal-auth-copy">
+        <p class="eyebrow" data-portal-i18n="login.eyebrow">Accès privé</p>
+        <h1 id="login-title" data-portal-i18n="login.title">Connexion à l’espace étudiant</h1>
+        <p class="portal-lead" data-portal-i18n="login.lead">Utilisez uniquement les identifiants fournis pour cet espace. Aucun mot de passe n’est conservé par cette page.</p>
+        <div class="portal-security-note"><span aria-hidden="true">i</span><p data-portal-i18n="landing.privacyText">Les contenus individuels ne sont demandés qu’après authentification. Aucun nom, devoir ou échange privé n’est intégré à cette interface publique.</p></div>
+      </div>
+
+      <div class="portal-auth-panel">
+        <p class="portal-form-status" id="login-service-status" role="status" aria-live="polite">Vérification de la configuration…</p>
+        <form id="portal-login-form" novalidate aria-describedby="login-service-status login-form-message">
+          <div class="portal-field">
+            <label for="login-email" data-portal-i18n="login.email">Adresse e-mail</label>
+            <input id="login-email" name="email" type="email" inputmode="email" autocomplete="username" maxlength="254" required disabled placeholder="votre.adresse@exemple.fr" data-portal-i18n-placeholder="login.emailPlaceholder">
+          </div>
+          <div class="portal-field">
+            <label for="login-password" data-portal-i18n="login.password">Mot de passe</label>
+            <input id="login-password" name="password" type="password" autocomplete="current-password" maxlength="256" required disabled placeholder="Votre mot de passe" data-portal-i18n-placeholder="login.passwordPlaceholder">
+          </div>
+          <button class="button primary portal-submit" type="submit" disabled data-portal-i18n="login.submit">Se connecter</button>
+          <p class="portal-form-message" id="login-form-message" role="alert" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </section>
+
+    <noscript><div class="container portal-noscript">JavaScript est nécessaire pour vérifier le service d’authentification. Aucun formulaire n’est envoyé sans cette vérification.</div></noscript>
+  </main>
+
+  <footer class="portal-footer">
+    <div class="container portal-footer-inner"><p><span data-portal-i18n="footer.label">Espace étudiant de Koessivi Jean HONOU</span> · <span id="portal-year"></span></p><p data-portal-i18n="footer.privacy">Accès privé protégé par le service d’authentification.</p></div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Espace étudiant — Koessivi Jean HONOU</title>
+  <meta name="description" content="Portail pédagogique pour accéder aux travaux, ressources, dépôts et échanges après authentification.">
+  <meta name="author" content="Koessivi Jean HONOU">
+  <meta name="theme-color" content="#0b1f33">
+  <meta name="referrer" content="same-origin">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/teaching.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.102.0" defer></script>
+  <script src="../assets/js/supabase-config.js" defer></script>
+  <script src="../assets/js/supabase-client.js" defer></script>
+  <script src="../assets/js/teaching-portal.js" defer></script>
+</head>
+<body class="portal-page" data-portal-page="landing">
+  <a class="skip-link" href="#main" data-portal-i18n="a11y.skip">Aller au contenu</a>
+
+  <header class="portal-header">
+    <nav class="container portal-nav" aria-label="Navigation de l’espace étudiant" data-portal-i18n-aria="a11y.navigation">
+      <a class="brand portal-brand" href="index.html" aria-label="Accueil du portail" data-portal-i18n-aria="header.portalHome">
+        <span aria-hidden="true">KJ</span>
+        <strong class="portal-brand-copy"><span>HONOU</span><small data-portal-i18n="header.portal">Espace étudiant</small></strong>
+      </a>
+      <a class="portal-back-link" href="../teaching.html"><span aria-hidden="true">←</span><span data-portal-i18n="header.portfolio">Retour au portfolio</span></a>
+      <div class="language-switcher portal-language" aria-label="Choix de la langue" data-portal-i18n-aria="a11y.language">
+        <button type="button" data-lang="fr" class="active" aria-pressed="true">FR</button><span aria-hidden="true">|</span><button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="portal-hero">
+      <div class="container portal-hero-grid">
+        <div class="portal-hero-copy">
+          <p class="eyebrow" data-portal-i18n="landing.eyebrow">Transmission & accompagnement</p>
+          <h1 data-portal-i18n="landing.title">Un espace de travail clair pour suivre les activités pédagogiques.</h1>
+          <p class="portal-lead" data-portal-i18n="landing.lead">Ce portail est préparé pour centraliser les travaux à faire, les ressources, les dépôts et les questions dans un environnement privé.</p>
+          <a class="button primary portal-primary-action" id="portal-primary-action" href="login.html" data-portal-i18n="landing.login">Accéder à la connexion</a>
+        </div>
+
+        <aside class="portal-state-card" id="portal-config-state" data-state="checking" aria-labelledby="portal-config-title" aria-live="polite">
+          <p class="portal-state-label" data-portal-i18n="landing.stateLabel">État du portail</p>
+          <span class="portal-state-dot" aria-hidden="true"></span>
+          <h2 id="portal-config-title" data-portal-i18n="common.checking">Vérification de la configuration…</h2>
+          <p id="portal-config-description">Le portail ne charge aucune donnée privée sur cette page publique.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="portal-section portal-section-light" aria-labelledby="portal-features-title">
+      <div class="container">
+        <div class="portal-section-heading">
+          <div><p class="eyebrow" data-portal-i18n="landing.featureEyebrow">Fonctionnement</p><h2 id="portal-features-title" data-portal-i18n="landing.featureTitle">L’essentiel, sans distraction.</h2></div>
+        </div>
+        <div class="portal-feature-grid">
+          <article class="portal-feature"><span aria-hidden="true">01</span><h3 data-portal-i18n="landing.feature1Title">À faire</h3><p data-portal-i18n="landing.feature1Text">Retrouver les consignes et échéances communiquées dans l’espace privé.</p></article>
+          <article class="portal-feature"><span aria-hidden="true">02</span><h3 data-portal-i18n="landing.feature2Title">Ressources</h3><p data-portal-i18n="landing.feature2Text">Consulter les supports pédagogiques autorisés pour votre compte.</p></article>
+          <article class="portal-feature"><span aria-hidden="true">03</span><h3 data-portal-i18n="landing.feature3Title">Dépôts & questions</h3><p data-portal-i18n="landing.feature3Text">Transmettre un travail ou une question lorsque le backend authentifié l’autorise.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="portal-section portal-privacy" aria-labelledby="portal-privacy-title">
+      <div class="container portal-privacy-inner">
+        <p class="eyebrow" data-portal-i18n="landing.privacyEyebrow">Confidentialité</p>
+        <h2 id="portal-privacy-title" data-portal-i18n="landing.privacyTitle">Aucune information étudiante sur la page publique.</h2>
+        <p data-portal-i18n="landing.privacyText">Les contenus individuels ne sont demandés qu’après authentification. Aucun nom, devoir ou échange privé n’est intégré à cette interface publique.</p>
+      </div>
+    </section>
+
+    <noscript><div class="container portal-noscript">JavaScript est nécessaire uniquement pour vérifier la configuration et accéder aux fonctions authentifiées du portail.</div></noscript>
+  </main>
+
+  <footer class="portal-footer">
+    <div class="container portal-footer-inner"><p><span data-portal-i18n="footer.label">Espace étudiant de Koessivi Jean HONOU</span> · <span id="portal-year"></span></p><p data-portal-i18n="footer.privacy">Accès privé protégé par le service d’authentification.</p></div>
+  </footer>
+</body>
+</html>

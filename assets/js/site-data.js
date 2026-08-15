@@ -82,17 +82,10 @@ window.SITE_DATA = {
       visual: {
         className: "visual-poisson",
         label: "λ(t)",
+        generator: "poisson-scatter",
         elements: [
           { tag: "span", className: "axis x" },
-          { tag: "span", className: "axis y" },
-          { tag: "i", variables: { x: "12%", y: "18%" } },
-          { tag: "i", variables: { x: "23%", y: "35%" } },
-          { tag: "i", variables: { x: "31%", y: "52%" } },
-          { tag: "i", variables: { x: "48%", y: "69%" } },
-          { tag: "i", variables: { x: "55%", y: "24%" } },
-          { tag: "i", variables: { x: "67%", y: "41%" } },
-          { tag: "i", variables: { x: "79%", y: "58%" } },
-          { tag: "i", variables: { x: "88%", y: "75%" } }
+          { tag: "span", className: "axis y" }
         ]
       }
     },
@@ -100,9 +93,9 @@ window.SITE_DATA = {
       visual: {
         className: "visual-numerical",
         label: "u(x,t)",
+        generator: "damped-sine",
         elements: [
-          { tag: "span", className: "mesh" },
-          { tag: "span", className: "wave" }
+          { tag: "span", className: "mesh" }
         ]
       }
     }
@@ -308,6 +301,7 @@ window.SITE_DATA = {
         { title: { fr: "Problématique", en: "Research question" }, body: { fr: "Dans quelle mesure un processus de Poisson homogène décrit-il les événements observés, et comment détecter une intensité variable ou de la surdispersion ?", en: "To what extent can a homogeneous Poisson process describe the observed events, and how can varying intensity or overdispersion be detected?" } },
         { title: { fr: "Données", en: "Data" }, body: { fr: "ACN-Data documente des sessions de recharge de véhicules électriques ; NYC 311 rassemble des demandes de service urbaines horodatées.", en: "ACN-Data documents electric-vehicle charging sessions; NYC 311 contains timestamped urban service requests." } },
         { title: { fr: "Méthodologie", en: "Methodology" }, items: [{ fr: "Théorie et simulation des processus de comptage", en: "Counting-process theory and simulation" }, { fr: "Estimation de l’intensité et analyse temporelle", en: "Intensity estimation and temporal analysis" }, { fr: "Comparaison des comportements homogènes et non homogènes", en: "Comparison of homogeneous and non-homogeneous behaviour" }, { fr: "Diagnostic de surdispersion", en: "Overdispersion diagnostics" }] },
+        { title: { fr: "Simulateur interactif", en: "Interactive simulator" }, type: "interactive", component: "poisson-simulator", body: { fr: "Générez une réalisation d’un processus de Poisson homogène ou non homogène et observez ses statistiques se recalculer en direct.", en: "Generate a realization of a homogeneous or non-homogeneous Poisson process and watch its statistics recompute live." }, note: { fr: "Illustration interactive de la méthode, avec des paramètres libres — pas les résultats réels d’ACN-Data ou de NYC 311, qui seront publiés après validation de l’analyse.", en: "An interactive illustration of the method with free parameters — not the real ACN-Data or NYC 311 results, which will be published once the analysis is verified." } },
         { title: { fr: "État du travail", en: "Current state" }, body: { fr: "Les conclusions et résultats seront publiés après finalisation et validation de l’analyse.", en: "Findings and conclusions will be published after the analysis is completed and verified." } }
       ],
       documents: [
@@ -326,6 +320,7 @@ window.SITE_DATA = {
       sections: [
         { title: { fr: "Axes étudiés", en: "Topics studied" }, items: [{ fr: "Schéma de Lax-Wendroff", en: "Lax–Wendroff scheme" }, { fr: "Condition de stabilité CFL", en: "CFL stability condition" }, { fr: "Méthode des éléments finis", en: "Finite-element method" }, { fr: "Génération de maillages avec DistMesh", en: "Mesh generation with DistMesh" }] },
         { title: { fr: "Approche", en: "Approach" }, body: { fr: "Mettre en relation formulation mathématique, discrétisation, implémentation MATLAB et analyse du comportement numérique.", en: "Connecting mathematical formulation, discretisation, MATLAB implementation and analysis of numerical behaviour." } },
+        { title: { fr: "Démonstration de la stabilité CFL", en: "CFL stability demonstration" }, type: "interactive", component: "cfl-stability", body: { fr: "Une équation d’advection intégrée par le schéma de Lax-Wendroff, calculée dans le navigateur. Augmentez ν au-delà de 1 pour observer une vraie divergence numérique.", en: "An advection equation integrated with the Lax-Wendroff scheme, computed in the browser. Push ν above 1 to watch a genuine numerical blow-up." } },
         { title: { fr: "Résultats", en: "Results" }, body: { fr: "Les résultats, figures et comparaisons seront ajoutés uniquement à partir des travaux validés.", en: "Results, figures and comparisons will only be added from verified work." } }
       ],
       documents: [

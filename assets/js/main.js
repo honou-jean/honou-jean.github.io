@@ -48,13 +48,49 @@
     return `<${tag}${className ? ` class="${className}"` : ""}${style}></${tag}>`;
   }
 
+  function poissonScatterPoints() {
+    const prng = window.PortfolioPRNG;
+    if (!prng) return [];
+    const random = prng.mulberry32(20250809);
+    const horizon = 9;
+    const arrivals = prng.homogeneousPoissonArrivals(random, 1, horizon);
+    const count = arrivals.length;
+    if (!count) return [];
+    return arrivals.map((t, index) => ({
+      x: `${(6 + Math.min(1, t / horizon) * 88).toFixed(1)}%`,
+      y: `${(12 + ((index + 1) / count) * 66).toFixed(1)}%`
+    }));
+  }
+
+  function dampedSinePoints() {
+    const samples = 40;
+    const points = [];
+    for (let i = 0; i <= samples; i += 1) {
+      const x = i / samples;
+      const y = 0.5 - 0.42 * Math.exp(-x * 2.6) * Math.sin(x * Math.PI * 3.1);
+      points.push(`${(x * 100).toFixed(2)},${(y * 100).toFixed(2)}`);
+    }
+    return points.join(" ");
+  }
+
+  function generatedVisualMarkup(generator) {
+    if (generator === "poisson-scatter") {
+      return poissonScatterPoints().map(point => `<i style="--x:${point.x};--y:${point.y}"></i>`).join("");
+    }
+    if (generator === "damped-sine") {
+      return `<svg class="wave-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline points="${dampedSinePoints()}"></polyline></svg>`;
+    }
+    return "";
+  }
+
   function projectVisual(project) {
     const theme = data.projectThemes?.[projectThemeKey(project)] || data.projectThemes?.default || {};
     const visual = theme.visual || {};
     const className = String(visual.className || "visual-generic").replace(/[^a-z0-9 _-]/gi, "").trim();
     const elements = Array.isArray(visual.elements) ? visual.elements.map(themeVisualElement).join("") : "";
+    const generated = generatedVisualMarkup(visual.generator);
     const label = visual.label ? `<b>${escapeHtml(visual.label)}</b>` : "";
-    return `<div class="visual-scene ${className}" aria-hidden="true">${elements}${label}</div>`;
+    return `<div class="visual-scene ${className}" aria-hidden="true">${elements}${generated}${label}</div>`;
   }
 
   function normalizeMediaItem(value, fallbackAlt = "") {
@@ -114,9 +150,10 @@
   function renderTechnologies() {
     const container = $('#technology-list');
     if (!container) return;
-    container.innerHTML = data.technologies.map(technology => {
+    container.innerHTML = data.technologies.map((technology, index) => {
       const icon = technologyIcon(technology);
-      return `<span class="technology-item">${icon}<strong${icon ? "" : ' class="technology-name-only"'}>${technology}</strong></span>`;
+      const number = String(index + 1).padStart(2, "0");
+      return `<span class="technology-index-item"><span class="technology-index-number" aria-hidden="true">${number}</span>${icon}<strong${icon ? "" : ' class="technology-name-only"'}>${technology}</strong></span>`;
     }).join("");
   }
 
@@ -241,10 +278,18 @@
     const socialsContainer = $('#contact-socials');
     const contact = data.contact;
     const copy = translations[currentLanguage].contact;
-    if (linksContainer) linksContainer.innerHTML = `
-      <a href="mailto:${contact.email}"><span>${copy.email}</span><strong>${contact.email}</strong></a>
-      <a href="tel:${contact.phone.href}"><span>${copy.phone}</span><strong>${contact.phone.display}</strong></a>
-      <div><span>${copy.location}</span><strong>${local(contact.location)}</strong></div>`;
+    if (linksContainer) {
+      linksContainer.innerHTML = `
+        <a href="mailto:${contact.email}"><span>${copy.email}</span><strong>${contact.email}</strong></a>
+        <div><span>${copy.phone}</span><span class="contact-phone-value" data-tel="${escapeHtml(contact.phone.href)}" data-display="${escapeHtml(contact.phone.display)}"><button type="button" class="contact-phone-reveal">${copy.phoneReveal}</button></span></div>
+        <div><span>${copy.location}</span><strong>${local(contact.location)}</strong></div>`;
+      const phoneButton = linksContainer.querySelector('.contact-phone-reveal');
+      phoneButton?.addEventListener('click', () => {
+        const holder = phoneButton.closest('.contact-phone-value');
+        if (!holder) return;
+        holder.innerHTML = `<a href="tel:${holder.dataset.tel}"><strong>${holder.dataset.display}</strong></a>`;
+      }, { once: true });
+    }
     const socials = [];
     if (configured(contact.linkedin)) socials.push(`<a class="social-button" href="${contact.linkedin}" target="_blank" rel="noopener noreferrer" aria-label="${copy.linkedinLabel}">${socialIcon("linkedin")}<span>LinkedIn</span></a>`);
     if (configured(contact.github)) socials.push(`<a class="social-button" href="${contact.github}" target="_blank" rel="noopener noreferrer" aria-label="${copy.githubLabel}">${socialIcon("github")}<span>GitHub</span></a>`);

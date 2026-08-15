@@ -136,6 +136,55 @@
     return data.projectThemes?.[requested] ? requested : "default";
   }
 
+  function poissonScatterPoints() {
+    const prng = window.PortfolioPRNG;
+    if (!prng) return [];
+    const random = prng.mulberry32(20250809);
+    const horizon = 9;
+    const arrivals = prng.homogeneousPoissonArrivals(random, 1, horizon);
+    const count = arrivals.length;
+    if (!count) return [];
+    return arrivals.map((t, index) => ({
+      x: `${(6 + Math.min(1, t / horizon) * 88).toFixed(1)}%`,
+      y: `${(12 + ((index + 1) / count) * 66).toFixed(1)}%`
+    }));
+  }
+
+  function dampedSinePoints() {
+    const samples = 40;
+    const points = [];
+    for (let i = 0; i <= samples; i += 1) {
+      const x = i / samples;
+      const y = 0.5 - 0.42 * Math.exp(-x * 2.6) * Math.sin(x * Math.PI * 3.1);
+      points.push(`${(x * 100).toFixed(2)},${(y * 100).toFixed(2)}`);
+    }
+    return points.join(" ");
+  }
+
+  function appendGeneratedVisual(scene, generator) {
+    if (generator === "poisson-scatter") {
+      poissonScatterPoints().forEach((point) => {
+        const dot = document.createElement("i");
+        dot.style.setProperty("--x", point.x);
+        dot.style.setProperty("--y", point.y);
+        scene.append(dot);
+      });
+      return;
+    }
+    if (generator === "damped-sine") {
+      const svgNamespace = "http://www.w3.org/2000/svg";
+      const svg = document.createElementNS(svgNamespace, "svg");
+      svg.setAttribute("class", "wave-svg");
+      svg.setAttribute("viewBox", "0 0 100 100");
+      svg.setAttribute("preserveAspectRatio", "none");
+      svg.setAttribute("aria-hidden", "true");
+      const polyline = document.createElementNS(svgNamespace, "polyline");
+      polyline.setAttribute("points", dampedSinePoints());
+      svg.append(polyline);
+      scene.append(svg);
+    }
+  }
+
   function createThemeVisual(themeKey) {
     const theme = data.projectThemes?.[themeKey] || data.projectThemes?.default || {};
     const visual = theme.visual || {};
@@ -152,6 +201,7 @@
       });
       scene.append(element);
     });
+    appendGeneratedVisual(scene, visual.generator);
     if (visual.label) {
       const label = document.createElement("b");
       label.textContent = visual.label;
@@ -371,6 +421,17 @@
 
       sectionElement.append(number, copy);
       container.append(sectionElement);
+
+      if (section.type === "interactive" && section.component) {
+        const mount = window.PortfolioDemos?.[section.component];
+        if (typeof mount === "function") {
+          const mountPoint = document.createElement("div");
+          mountPoint.className = "detail-interactive";
+          copy.insertBefore(mountPoint, noteValue ? copy.querySelector(".detail-note") : null);
+          try { mount(mountPoint, { language }); }
+          catch (_error) { mountPoint.remove(); }
+        }
+      }
 
       const tocItem = document.createElement("li");
       const tocLink = document.createElement("a");

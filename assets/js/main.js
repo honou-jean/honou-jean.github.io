@@ -126,21 +126,33 @@
     return path ? `<img class="social-icon" src="${path}" alt="" aria-hidden="true" loading="lazy" decoding="async">` : "";
   }
 
+  const EXPERTISE_ICONS = [
+    '<path d="M4 30h32M4 30c6 0 8-20 16-20s10 20 16 20"/>',
+    '<circle cx="9" cy="12" r="2.4" fill="currentColor" stroke="none"/><circle cx="9" cy="28" r="2.4" fill="currentColor" stroke="none"/><circle cx="24" cy="20" r="2.4" fill="currentColor" stroke="none"/><circle cx="35" cy="10" r="2.4" fill="currentColor" stroke="none"/><circle cx="35" cy="30" r="2.4" fill="currentColor" stroke="none"/><path d="M9 12 24 20M9 28 24 20M24 20 35 10M24 20 35 30"/>',
+    '<path d="M4 12V6h6M30 6h6v6M36 28v6h-6M10 34H4v-6"/><circle cx="20" cy="20" r="5.5"/>',
+    '<path d="M4 34h32M4 34V6"/><path d="M6 27q10-21 16-8t14-9"/>'
+  ];
+
+  function expertiseIconMarkup(index) {
+    const path = EXPERTISE_ICONS[index % EXPERTISE_ICONS.length];
+    return `<svg class="expertise-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
+  }
+
   function renderExpertise() {
     const fullList = $('#expertise-list');
     if (fullList) {
-      fullList.innerHTML = data.expertise.map(item => `
+      fullList.innerHTML = data.expertise.map((item, index) => `
         <article class="expertise-item">
-          <span class="expertise-number" aria-hidden="true">${item.number}</span>
+          <div class="expertise-badge">${expertiseIconMarkup(index)}<span class="expertise-number" aria-hidden="true">${item.number}</span></div>
           <div><h3>${local(item.title)}</h3><p>${local(item.description)}</p></div>
           <ul aria-label="${translations[currentLanguage].a11y.keywords}">${item.keywords.map(keyword => `<li>${keyword}</li>`).join("")}</ul>
         </article>`).join("");
     }
     const previewList = $('#expertise-preview-list');
     if (previewList) {
-      previewList.innerHTML = data.expertise.map(item => `
+      previewList.innerHTML = data.expertise.map((item, index) => `
         <article class="expertise-preview-item">
-          <span class="expertise-number" aria-hidden="true">${item.number}</span>
+          <div class="expertise-badge">${expertiseIconMarkup(index)}<span class="expertise-number" aria-hidden="true">${item.number}</span></div>
           <h3>${local(item.title)}</h3>
           <p>${local(item.description)}</p>
         </article>`).join("");

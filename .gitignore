@@ -1,0 +1,12 @@
+# Local tooling / editor state
+.claude/
+.audit-chrome-escalated/
+.audit-chrome-smoke/
+.audit-edge-smoke/
+.audit-browser-profile/
+.audit-browser-stdout.log
+.audit-browser-stderr.log
+
+# OS junk
+.DS_Store
+Thumbs.db

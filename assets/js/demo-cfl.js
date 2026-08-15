@@ -62,7 +62,7 @@
     context.clearRect(0, 0, width, height);
 
     const styles = getComputedStyle(canvas);
-    const accent = styles.getPropertyValue("--project-accent").trim() || "#e8bd79";
+    const accent = styles.getPropertyValue("--project-accent-on-light").trim() || styles.getPropertyValue("--project-accent").trim() || "#e8bd79";
     const line = styles.getPropertyValue("--project-line").trim() || "rgba(232,189,121,.35)";
     const midY = height / 2;
     const scale = height * 0.38;

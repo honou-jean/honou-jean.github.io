@@ -18,6 +18,22 @@
     ".jpeg": "image/jpeg"
   });
   const GENERIC_BROWSER_FILE_TYPES = new Set(["", "application/octet-stream"]);
+  const MAX_RESOURCE_FILE_BYTES = 6 * 1024 * 1024;
+  const RESOURCE_TYPES_BY_EXTENSION = Object.freeze({
+    ".pdf": "application/pdf",
+    ".doc": "application/msword",
+    ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ".odt": "application/vnd.oasis.opendocument.text",
+    ".ppt": "application/vnd.ms-powerpoint",
+    ".pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    ".xls": "application/vnd.ms-excel",
+    ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    ".txt": "text/plain",
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".zip": "application/zip"
+  });
 
   let client = null;
 
@@ -602,6 +618,235 @@
     }
   }
 
+  async function inviteStudent(input) {
+    const email = normalizeText(input && input.email, 254, true).toLowerCase();
+    const fullName = normalizeText(input && input.fullName, 120, true);
+    const cohortValue = normalizeText(input && input.cohort, 120, false);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) fail("INVALID_INPUT", "A valid email address is required.");
+
+    try {
+      const context = await authenticatedContext();
+      if (context.profile.role !== "teacher") fail("ACCESS_DENIED", "Only teachers can invite students.");
+
+      const { data, error } = await context.client.functions.invoke("create-student", {
+        body: { email, fullName, cohort: cohortValue || null }
+      });
+      if (error) fail("INVITE_FAILED", "The student account could not be created.", error);
+      if (data && data.error) fail("INVITE_FAILED", limitedServerMessage(data.error));
+      return data;
+    } catch (error) {
+      return backendFailure(error, "INVITE_FAILED", "The student account could not be created.");
+    }
+  }
+
+  function limitedServerMessage(value) {
+    return typeof value === "string" && value ? value.slice(0, 300) : "The student account could not be created.";
+  }
+
+  async function createAssignment(input) {
+    const title = normalizeText(input && input.title, 180, true);
+    const description = normalizeText(input && input.description, 4000, false) || null;
+    const instructions = normalizeText(input && input.instructions, 12000, false) || null;
+    const studentId = input && input.studentId;
+    const publish = Boolean(input && input.publish);
+    let dueAt = null;
+    if (input && input.dueAt) {
+      const parsed = new Date(input.dueAt);
+      if (Number.isNaN(parsed.getTime())) fail("INVALID_INPUT", "The due date is not valid.");
+      dueAt = parsed.toISOString();
+    }
+    if (!validUuid(studentId)) fail("INVALID_INPUT", "A valid student is required.");
+
+    try {
+      const context = await authenticatedContext();
+      if (context.profile.role !== "teacher") fail("ACCESS_DENIED", "Only teachers can create assignments.");
+
+      return await queryOrFail(
+        context.client
+          .from("assignments")
+          .insert({
+            teacher_id: context.user.id,
+            student_id: studentId,
+            title,
+            description,
+            instructions,
+            due_at: dueAt,
+            status: publish ? "published" : "draft"
+          })
+          .select("id, teacher_id, student_id, title, description, instructions, due_at, status, published_at, created_at, updated_at")
+          .single(),
+        "ASSIGNMENT_FAILED",
+        "The assignment could not be created."
+      );
+    } catch (error) {
+      return backendFailure(error, "ASSIGNMENT_FAILED", "The assignment could not be created.");
+    }
+  }
+
+  async function setAssignmentStatus(input) {
+    const id = input && input.id;
+    const status = input && input.status;
+    if (!validUuid(id)) fail("INVALID_INPUT", "A valid assignment identifier is required.");
+    if (!["draft", "published", "closed"].includes(status)) fail("INVALID_INPUT", "A valid status is required.");
+
+    try {
+      const context = await authenticatedContext();
+      if (context.profile.role !== "teacher") fail("ACCESS_DENIED", "Only teachers can update assignments.");
+      return await queryOrFail(
+        context.client.from("assignments").update({ status }).eq("id", id)
+          .select("id, status, published_at").single(),
+        "ASSIGNMENT_UPDATE_FAILED",
+        "The assignment status could not be updated."
+      );
+    } catch (error) {
+      return backendFailure(error, "ASSIGNMENT_UPDATE_FAILED", "The assignment status could not be updated.");
+    }
+  }
+
+  function safeResourceExternalUrl(value) {
+    const url = safeHttpsExternalUrl(value);
+    return url && url.length >= 9 ? url : null;
+  }
+
+  async function addResource(input) {
+    const assignmentId = input && input.assignmentId;
+    const title = normalizeText(input && input.title, 180, true);
+    const description = normalizeText(input && input.description, 2000, false) || null;
+    const visible = input && input.visible === false ? false : true;
+    const file = input && input.file;
+    const requestedUrl = input && input.externalUrl ? String(input.externalUrl).trim() : "";
+    if (!validUuid(assignmentId)) fail("INVALID_INPUT", "A valid assignment identifier is required.");
+    if (!file && !requestedUrl) fail("INVALID_INPUT", "Provide either a file or an external link.");
+    if (file && requestedUrl) fail("INVALID_INPUT", "Provide only one of a file or an external link.");
+
+    const externalUrl = requestedUrl ? safeResourceExternalUrl(requestedUrl) : null;
+    if (requestedUrl && !externalUrl) fail("INVALID_INPUT", "The external link must be a valid https:// URL.");
+
+    let resolvedFile = null;
+    if (file) {
+      if (
+        typeof file.name !== "string"
+        || typeof file.type !== "string"
+        || !Number.isSafeInteger(file.size)
+      ) {
+        fail("INVALID_INPUT", "The resource file must be a browser File object.");
+      }
+      if (file.size <= 0 || file.size > MAX_RESOURCE_FILE_BYTES) {
+        fail("FILE_TOO_LARGE", "The resource file must be non-empty and no larger than 6 MiB.");
+      }
+      const baseName = file.name.split(/[\\/]/).pop() || "";
+      const dotIndex = baseName.lastIndexOf(".");
+      const extension = dotIndex > 0 ? baseName.slice(dotIndex).toLowerCase() : "";
+      const canonicalType = RESOURCE_TYPES_BY_EXTENSION[extension];
+      const declaredType = file.type.trim().toLowerCase();
+      if (!canonicalType || (!GENERIC_BROWSER_FILE_TYPES.has(declaredType) && declaredType !== canonicalType)) {
+        fail("UNSUPPORTED_FILE_TYPE", "This resource file type is not supported.");
+      }
+      resolvedFile = { file, contentType: canonicalType };
+    }
+
+    let uploadedPath = null;
+    try {
+      const context = await authenticatedContext();
+      if (context.profile.role !== "teacher") fail("ACCESS_DENIED", "Only teachers can add resources.");
+
+      const assignment = await queryOrFail(
+        context.client.from("assignments").select("id, student_id, teacher_id").eq("id", assignmentId).single(),
+        "ASSIGNMENT_UNAVAILABLE",
+        "The assignment is unavailable."
+      );
+      if (assignment.teacher_id !== context.user.id) fail("ACCESS_DENIED", "This assignment does not belong to you.");
+
+      let storagePath = null;
+      let mimeType = null;
+      let fileSizeBytes = null;
+
+      if (resolvedFile) {
+        storagePath = `${assignment.student_id}/${assignmentId}/${uniqueId()}-${safeFileName(resolvedFile.file.name)}`;
+        const { error: uploadError } = await context.client.storage.from(RESOURCE_BUCKET).upload(storagePath, resolvedFile.file, {
+          cacheControl: "3600",
+          contentType: resolvedFile.contentType,
+          upsert: false
+        });
+        if (uploadError) fail("UPLOAD_FAILED", "The resource file could not be uploaded.", uploadError);
+        uploadedPath = storagePath;
+        mimeType = resolvedFile.contentType;
+        fileSizeBytes = resolvedFile.file.size;
+      }
+
+      return await queryOrFail(
+        context.client
+          .from("resources")
+          .insert({
+            assignment_id: assignmentId,
+            title,
+            description,
+            storage_path: storagePath,
+            external_url: storagePath ? null : externalUrl,
+            mime_type: mimeType,
+            file_size_bytes: fileSizeBytes,
+            visible
+          })
+          .select("id, assignment_id, title, description, storage_path, external_url, mime_type, file_size_bytes, visible, created_at, updated_at")
+          .single(),
+        "RESOURCE_FAILED",
+        "The resource could not be created."
+      );
+    } catch (error) {
+      if (uploadedPath && client) {
+        try {
+          await client.storage.from(RESOURCE_BUCKET).remove([uploadedPath]);
+        } catch (_cleanupError) {
+          // The original failure remains authoritative. Orphans can be audited by path.
+        }
+      }
+      return backendFailure(error, "RESOURCE_FAILED", "The resource could not be created.");
+    }
+  }
+
+  async function reviewSubmission(input) {
+    const id = input && input.id;
+    const feedback = normalizeText(input && input.feedback, 8000, false) || null;
+    let grade = null;
+    if (input && input.grade !== undefined && input.grade !== null && input.grade !== "") {
+      grade = Number(input.grade);
+      if (!Number.isFinite(grade) || grade < 0 || grade > 20) fail("INVALID_INPUT", "The grade must be between 0 and 20.");
+    }
+    if (!validUuid(id)) fail("INVALID_INPUT", "A valid submission identifier is required.");
+
+    try {
+      const context = await authenticatedContext();
+      if (context.profile.role !== "teacher") fail("ACCESS_DENIED", "Only teachers can review submissions.");
+      return await queryOrFail(
+        context.client.from("submissions").update({ feedback, grade, status: "reviewed" }).eq("id", id)
+          .select("id, status, feedback, grade, reviewed_at").single(),
+        "REVIEW_FAILED",
+        "The submission could not be updated."
+      );
+    } catch (error) {
+      return backendFailure(error, "REVIEW_FAILED", "The submission could not be updated.");
+    }
+  }
+
+  async function answerQuestion(input) {
+    const id = input && input.id;
+    const answer = normalizeText(input && input.answer, 8000, true);
+    if (!validUuid(id)) fail("INVALID_INPUT", "A valid question identifier is required.");
+
+    try {
+      const context = await authenticatedContext();
+      if (context.profile.role !== "teacher") fail("ACCESS_DENIED", "Only teachers can answer questions.");
+      return await queryOrFail(
+        context.client.from("questions").update({ answer }).eq("id", id)
+          .select("id, status, answer, answered_at").single(),
+        "ANSWER_FAILED",
+        "The answer could not be saved."
+      );
+    } catch (error) {
+      return backendFailure(error, "ANSWER_FAILED", "The answer could not be saved.");
+    }
+  }
+
   global.TEACHING_PORTAL_BACKEND = Object.freeze({
     isConfigured,
     getSession,
@@ -610,6 +855,12 @@
     onAuthStateChange,
     getDashboardData,
     submitQuestion,
-    uploadSubmission
+    uploadSubmission,
+    inviteStudent,
+    createAssignment,
+    setAssignmentStatus,
+    addResource,
+    reviewSubmission,
+    answerQuestion
   });
 })(window);

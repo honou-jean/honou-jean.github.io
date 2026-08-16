@@ -58,7 +58,7 @@ Do not change these layouts without updating the corresponding Storage policy he
 
 ## 2. Configure Auth users and roles
 
-Create accounts from **Authentication > Users** or through a trusted server/admin workflow. Do not expose public self-sign-up unless it is deliberately designed, rate-limited and reviewed.
+Create accounts from **Authentication > Users**, through a trusted server/admin workflow, or by having a signed-in teacher use the dashboard's "Ajouter un élève" form (see [§7](#7-deploy-the-create-student-edge-function) and [§8](#8-teacher-dashboard-end-to-end-workflow)), which calls the `create-student` Edge Function instead of running SQL by hand. Do not expose public self-sign-up unless it is deliberately designed, rate-limited and reviewed.
 
 The Auth trigger creates each profile as a student. Promote the verified teacher only from a trusted SQL/admin context:
 
@@ -222,6 +222,51 @@ node supabase/tests/adapter-contract.cjs
 They verify the exact public API surface, fail-closed empty/secret/placeholder configuration, legacy anon-key role rejection, the 6 MiB boundary, approved extension/MIME pairing, canonical MIME inference for generic browser values, recipient-filtered assignment queries, and external-link handling without Storage signing.
 
 The SQL Editor normally runs with elevated privileges and therefore does not reproduce browser RLS behavior. Use real authenticated JWT sessions or dedicated database tests with the `authenticated` role when testing policies.
+
+## 7. Deploy the `create-student` Edge Function
+
+The dashboard's "Ajouter un élève" form lets a signed-in teacher create a new student account without anyone touching the SQL Editor. It calls `supabase/functions/create-student/index.ts`, a Deno Edge Function that performs the privileged steps a browser can never safely do itself:
+
+1. Verifies the caller's own JWT with `auth.getUser()` — it never trusts a client-supplied teacher or user id.
+2. Confirms that caller's `profiles.role` is `teacher` (service-role read, bypassing RLS deliberately, since this check *is* the authorization gate for everything that follows).
+3. Validates `email` / `fullName` (1–120 chars) / `cohort` (optional, 1–120 chars) against the same limits as the `students`/`profiles` constraints.
+4. Generates a 20-character temporary password with `crypto.getRandomValues` and rejection sampling (not `Math.random`, and not a biased modulo).
+5. Creates the Auth user via `auth.admin.createUser` with `email_confirm: true` (no confirmation email — the teacher hands the password to the student directly) and inserts the matching `students` row.
+6. If the `students` insert fails, rolls back by deleting the just-created Auth user, so no orphaned account is left behind.
+7. Returns `{ email, temporaryPassword, userId, fullName, cohort }` exactly once. Nothing server-side logs or persists the plaintext password.
+
+Deploy it to the linked project:
+
+```powershell
+supabase link --project-ref YOUR_PROJECT_REF
+supabase functions deploy create-student
+```
+
+Supabase automatically injects `SUPABASE_URL`, `SUPABASE_ANON_KEY` and `SUPABASE_SERVICE_ROLE_KEY` into every deployed Edge Function for the linked project — no manual secret-setting is needed for a normal hosted deployment. The service-role key never leaves this server-side environment and must never be added to `assets/js/supabase-config.js` or any other browser-loaded file.
+
+To test locally before deploying, run it under the CLI stack with an untracked env file:
+
+```powershell
+supabase start
+supabase functions serve create-student --env-file supabase/.env.local
+```
+
+Add `supabase/.env.local` to `.gitignore` if you create it; it would otherwise hold a service-role key.
+
+The browser side is already wired: `assets/js/supabase-client.js`'s `inviteStudent()` checks `context.profile.role === "teacher"` (a cosmetic guard only) and calls `client.functions.invoke("create-student", { body })`, forwarding the teacher's own session token automatically. The function's CORS headers allow any origin because the real authorization boundary is the bearer JWT, not the origin; narrow `Access-Control-Allow-Origin` in `index.ts` to the production domain if you want defense in depth.
+
+## 8. Teacher dashboard: end-to-end workflow
+
+Everything below happens at `teaching/dashboard.html` once a teacher account exists (see §2) and is signed in.
+
+1. **Sign in.** The page shows the teacher's own dashboard content (`#dashboard-content-teacher`) once `getDashboardData()` resolves `role: "teacher"`; a student session instead sees `#dashboard-content`.
+2. **01 · Mes élèves.** The roster lists every student assigned to this teacher with an active/inactive pill. "Ajouter un élève" creates a new account through the Edge Function in §7; on success, a credential box appears once with the student's email and temporary password (`inviteStudent()` → `handleInviteStudent()` in `assets/js/teaching-portal.js`). This is the only time the password is shown anywhere — the teacher must copy it out and hand it to the student over a channel they trust (in person, a call, an existing secure message thread). It is never emailed by the app itself.
+3. **02 · Mes activités.** "Créer une activité" builds a `assignments` row for one specific student, with a title, optional short description, optional detailed instructions, an optional due date, and a "publish immediately" checkbox. A draft is invisible to the student until published; `Publier`/`Clôturer` buttons on each row change its status in place (`handleAssignmentAction()`).
+4. **03 · Documents & ressources.** "Ajouter une ressource" attaches exactly one of a private file upload (stored under `teaching-resources/{student_id}/{assignment_id}/…`, per the path contract in §1) or a reviewed external HTTPS link to an assignment, with a visibility toggle. The student can read it only once the resource is `visible` and its assignment is published or closed.
+5. **04 · Devoirs remis.** Every submission the assigned student has uploaded appears with signed, time-limited download links to their files. The inline review form (`handleReviewSubmission()`) records feedback text and an optional 0–20 grade, and marks the submission `reviewed`.
+6. **05 · Questions.** Student questions attached to the teacher's assignments list here; the inline answer form (`handleAnswerQuestion()`) submits the reply, and a database trigger sets the question's status to `answered` and stamps `answered_at` automatically — the client never sets those fields itself.
+
+On the student's side (already implemented, `#dashboard-content`'s `#submission-form` and `#question-form`), a student who received credentials from their teacher signs in at the same page, sees only their own published/closed assignments and visible resources, uploads files against `uploadSubmission()` (§4's format/size limits apply), and can ask a question against `submitQuestion()`. Both actions are timestamped and tied to their own account by the server, never by a client-supplied id.
 
 ## Operational caveats
 

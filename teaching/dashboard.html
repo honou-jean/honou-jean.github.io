@@ -113,6 +113,107 @@
 
           <aside class="portal-rls-note"><strong>RLS</strong><p data-portal-i18n="dashboard.rlsNote">Le masquage de cette interface est une protection d’usage. L’autorisation réelle des données doit toujours être appliquée par les politiques RLS du backend.</p></aside>
         </div>
+
+        <div class="portal-dashboard-content" id="dashboard-content-teacher" hidden>
+          <p class="portal-data-status" id="dashboard-data-status-teacher" role="status" aria-live="polite" hidden></p>
+
+          <div class="portal-dashboard-grid">
+            <section class="portal-dashboard-card portal-dashboard-card-wide" aria-labelledby="students-title">
+              <div class="portal-card-heading"><span aria-hidden="true">01</span><h2 id="students-title" data-portal-i18n="teacher.studentsTitle">Mes élèves</h2></div>
+              <div class="portal-list" id="teacher-students-list"><p class="portal-empty" data-portal-i18n="common.loading">Chargement…</p></div>
+
+              <form class="portal-private-form" id="invite-student-form" novalidate aria-describedby="invite-status">
+                <div class="portal-form-heading"><h3 data-portal-i18n="teacher.inviteTitle">Ajouter un élève</h3><p data-portal-i18n="teacher.inviteIntro">Un compte est créé avec un mot de passe temporaire à transmettre vous-même à l’élève — il n’est jamais envoyé par e-mail depuis cette page.</p></div>
+                <div class="portal-field">
+                  <label for="invite-email" data-portal-i18n="teacher.studentEmail">E-mail de l’élève</label>
+                  <input id="invite-email" name="email" type="email" autocomplete="off" required disabled>
+                </div>
+                <div class="portal-field">
+                  <label for="invite-name" data-portal-i18n="teacher.studentName">Nom complet</label>
+                  <input id="invite-name" name="fullName" type="text" maxlength="120" required disabled>
+                </div>
+                <div class="portal-field">
+                  <label for="invite-cohort" data-portal-i18n="teacher.studentCohort">Groupe / niveau (facultatif)</label>
+                  <input id="invite-cohort" name="cohort" type="text" maxlength="120" disabled>
+                </div>
+                <button class="button primary portal-submit" type="submit" disabled data-portal-i18n="teacher.inviteSubmit">Créer le compte</button>
+                <p class="portal-form-message" id="invite-status" role="status" aria-live="polite" hidden></p>
+                <div class="portal-credential-reveal" id="invite-credential" role="status" hidden></div>
+              </form>
+            </section>
+
+            <section class="portal-dashboard-card portal-dashboard-card-wide" aria-labelledby="teacher-assignments-title">
+              <div class="portal-card-heading"><span aria-hidden="true">02</span><h2 id="teacher-assignments-title" data-portal-i18n="teacher.assignmentsTitle">Mes activités</h2></div>
+              <div class="portal-list" id="teacher-assignments-list"><p class="portal-empty" data-portal-i18n="common.loading">Chargement…</p></div>
+
+              <form class="portal-private-form" id="create-assignment-form" novalidate aria-describedby="assignment-form-status">
+                <div class="portal-form-heading"><h3 data-portal-i18n="teacher.assignmentCreateTitle">Créer une activité</h3><p data-portal-i18n="teacher.assignmentCreateIntro">Visible par l’élève uniquement une fois publiée.</p></div>
+                <div class="portal-field">
+                  <label for="assignment-student" data-portal-i18n="teacher.assignmentStudent">Élève concerné</label>
+                  <select id="assignment-student" name="studentId" required disabled><option value="" selected disabled data-portal-i18n="teacher.selectStudent">Sélectionner un élève</option></select>
+                </div>
+                <div class="portal-field">
+                  <label for="assignment-title" data-portal-i18n="teacher.assignmentTitleLabel">Titre</label>
+                  <input id="assignment-title" name="title" type="text" maxlength="180" required disabled>
+                </div>
+                <div class="portal-field">
+                  <label for="assignment-description" data-portal-i18n="teacher.assignmentDescriptionLabel">Description courte (facultatif)</label>
+                  <textarea id="assignment-description" name="description" rows="2" maxlength="4000" disabled></textarea>
+                </div>
+                <div class="portal-field">
+                  <label for="assignment-instructions" data-portal-i18n="teacher.assignmentInstructionsLabel">Consignes détaillées (facultatif)</label>
+                  <textarea id="assignment-instructions" name="instructions" rows="4" maxlength="12000" disabled></textarea>
+                </div>
+                <div class="portal-field">
+                  <label for="assignment-due" data-portal-i18n="teacher.assignmentDueLabel">Échéance (facultatif)</label>
+                  <input id="assignment-due" name="dueAt" type="date" disabled>
+                </div>
+                <label class="portal-checkbox"><input id="assignment-publish" name="publish" type="checkbox" checked disabled> <span data-portal-i18n="teacher.assignmentPublishNow">Publier immédiatement (visible par l’élève)</span></label>
+                <button class="button primary portal-submit" type="submit" disabled data-portal-i18n="teacher.assignmentSubmit">Créer l’activité</button>
+                <p class="portal-form-message" id="assignment-form-status" role="status" aria-live="polite" hidden></p>
+              </form>
+            </section>
+
+            <section class="portal-dashboard-card portal-dashboard-card-wide" aria-labelledby="teacher-resources-title">
+              <div class="portal-card-heading"><span aria-hidden="true">03</span><h2 id="teacher-resources-title" data-portal-i18n="teacher.resourcesTitle">Documents &amp; ressources</h2></div>
+              <div class="portal-list" id="teacher-resources-list"><p class="portal-empty" data-portal-i18n="common.loading">Chargement…</p></div>
+
+              <form class="portal-private-form" id="add-resource-form" novalidate aria-describedby="resource-form-status">
+                <div class="portal-form-heading"><h3 data-portal-i18n="teacher.resourceAddTitle">Ajouter un document</h3><p data-portal-i18n="teacher.resourceAddIntro">Un fichier ou un lien externe — jamais les deux à la fois.</p></div>
+                <div class="portal-field">
+                  <label for="resource-assignment" data-portal-i18n="dashboard.assignment">Activité concernée</label>
+                  <select id="resource-assignment" name="assignmentId" required disabled><option value="" selected disabled data-portal-i18n="dashboard.selectAssignment">Sélectionner une activité</option></select>
+                </div>
+                <div class="portal-field">
+                  <label for="resource-title" data-portal-i18n="teacher.resourceTitleLabel">Titre</label>
+                  <input id="resource-title" name="title" type="text" maxlength="180" required disabled>
+                </div>
+                <div class="portal-field">
+                  <label for="resource-file" data-portal-i18n="teacher.resourceFileLabel">Fichier (facultatif)</label>
+                  <input id="resource-file" name="file" type="file" accept=".pdf,.doc,.docx,.odt,.ppt,.pptx,.xls,.xlsx,.txt,.png,.jpg,.jpeg,.zip" disabled>
+                </div>
+                <div class="portal-field">
+                  <label for="resource-url" data-portal-i18n="teacher.resourceUrlLabel">Ou lien externe (facultatif)</label>
+                  <input id="resource-url" name="externalUrl" type="url" placeholder="https://…" disabled>
+                </div>
+                <button class="button primary portal-submit" type="submit" disabled data-portal-i18n="teacher.resourceSubmit">Ajouter le document</button>
+                <p class="portal-form-message" id="resource-form-status" role="status" aria-live="polite" hidden></p>
+              </form>
+            </section>
+
+            <section class="portal-dashboard-card portal-dashboard-card-wide" aria-labelledby="teacher-submissions-title">
+              <div class="portal-card-heading"><span aria-hidden="true">04</span><h2 id="teacher-submissions-title" data-portal-i18n="teacher.submissionsTitle">Dépôts à corriger</h2></div>
+              <div class="portal-list" id="teacher-submissions-list"><p class="portal-empty" data-portal-i18n="common.loading">Chargement…</p></div>
+            </section>
+
+            <section class="portal-dashboard-card portal-dashboard-card-wide" aria-labelledby="teacher-questions-title">
+              <div class="portal-card-heading"><span aria-hidden="true">05</span><h2 id="teacher-questions-title" data-portal-i18n="teacher.questionsTitle">Questions des élèves</h2></div>
+              <div class="portal-list" id="teacher-questions-list"><p class="portal-empty" data-portal-i18n="common.loading">Chargement…</p></div>
+            </section>
+          </div>
+
+          <aside class="portal-rls-note"><strong>RLS</strong><p data-portal-i18n="dashboard.rlsNote">Le masquage de cette interface est une protection d’usage. L’autorisation réelle des données doit toujours être appliquée par les politiques RLS du backend.</p></aside>
+        </div>
       </div>
     </section>
 

@@ -137,6 +137,83 @@
         questionFailed: "La question n’a pas pu être transmise. Réessayez plus tard.",
         signedOut: "Votre session est terminée.",
         signOutFailed: "La déconnexion n’a pas abouti. Votre session reste active."
+      },
+      teacher: {
+        studentsTitle: "Mes élèves",
+        studentsEmpty: "Aucun élève pour le moment.",
+        studentEmail: "E-mail de l’élève",
+        studentName: "Nom complet",
+        studentCohort: "Groupe / niveau (facultatif)",
+        inviteTitle: "Ajouter un élève",
+        inviteIntro: "Un compte est créé avec un mot de passe temporaire à transmettre vous-même à l’élève — il n’est jamais envoyé par e-mail depuis cette page.",
+        inviteSubmit: "Créer le compte",
+        inviteUnavailable: "La création de comptes n’est pas disponible pour cette session.",
+        invitePending: "Création en cours…",
+        inviteSuccess: "Compte créé. Transmettez ces identifiants à l’élève par un canal sûr — ils ne seront plus affichés ensuite.",
+        inviteFailed: "Le compte n’a pas pu être créé. Vérifiez l’adresse e-mail puis réessayez.",
+        credentialEmail: "E-mail",
+        credentialPassword: "Mot de passe temporaire",
+        credentialNote: "Conseillez à l’élève de changer ce mot de passe dès sa première connexion.",
+        cohortLabel: "Groupe",
+        activeLabel: "Actif",
+        inactiveLabel: "Inactif",
+        assignmentsTitle: "Mes activités",
+        assignmentsEmpty: "Aucune activité créée pour le moment.",
+        assignmentCreateTitle: "Créer une activité",
+        assignmentCreateIntro: "Visible par l’élève uniquement une fois publiée.",
+        assignmentStudent: "Élève concerné",
+        selectStudent: "Sélectionner un élève",
+        assignmentTitleLabel: "Titre",
+        assignmentDescriptionLabel: "Description courte (facultatif)",
+        assignmentInstructionsLabel: "Consignes détaillées (facultatif)",
+        assignmentDueLabel: "Échéance (facultatif)",
+        assignmentPublishNow: "Publier immédiatement (visible par l’élève)",
+        assignmentSubmit: "Créer l’activité",
+        assignmentUnavailable: "La création d’activités n’est pas disponible pour cette session.",
+        assignmentPending: "Création en cours…",
+        assignmentSuccess: "Activité créée.",
+        assignmentFailed: "L’activité n’a pas pu être créée.",
+        assignmentFor: "Pour",
+        publish: "Publier",
+        close: "Clôturer",
+        reopen: "Republier",
+        statusUpdateFailed: "Le statut n’a pas pu être modifié.",
+        resourcesTitle: "Documents & ressources",
+        resourcesEmpty: "Aucun document ajouté pour le moment.",
+        resourceAddTitle: "Ajouter un document",
+        resourceAddIntro: "Un fichier ou un lien externe — jamais les deux à la fois.",
+        resourceTitleLabel: "Titre",
+        resourceFileLabel: "Fichier (facultatif)",
+        resourceUrlLabel: "Ou lien externe (facultatif)",
+        resourceSubmit: "Ajouter le document",
+        resourceUnavailable: "L’ajout de documents n’est pas disponible pour cette session.",
+        resourcePending: "Envoi en cours…",
+        resourceSuccess: "Document ajouté.",
+        resourceFailed: "Le document n’a pas pu être ajouté. Vérifiez le fichier ou le lien puis réessayez.",
+        resourceBoth: "Choisissez un fichier ou un lien, pas les deux.",
+        resourceNeither: "Choisissez un fichier ou indiquez un lien.",
+        submissionsTitle: "Dépôts à corriger",
+        submissionsEmpty: "Aucun dépôt à corriger pour le moment.",
+        feedbackLabel: "Retour à l’élève",
+        gradeLabel: "Note sur 20 (facultatif)",
+        saveReview: "Enregistrer la correction",
+        reviewSaved: "Correction enregistrée.",
+        reviewFailed: "La correction n’a pas pu être enregistrée.",
+        questionsTitle: "Questions des élèves",
+        questionsEmpty: "Aucune question pour le moment.",
+        answerLabel: "Votre réponse",
+        sendAnswer: "Envoyer la réponse",
+        answerSaved: "Réponse envoyée.",
+        answerFailed: "La réponse n’a pas pu être envoyée.",
+        alreadyAnswered: "Déjà répondu",
+        statusDraft: "Brouillon",
+        statusPublished: "Publiée",
+        statusClosed: "Clôturée",
+        statusSubmitted: "Déposé",
+        statusLate: "Déposé en retard",
+        statusReviewed: "Corrigé",
+        statusOpen: "En attente",
+        statusAnswered: "Répondu"
       }
     },
     en: {
@@ -259,6 +336,75 @@
         questionFailed: "The question could not be sent. Try again later.",
         signedOut: "Your session has ended.",
         signOutFailed: "Sign-out did not complete. Your session remains active."
+      },
+      teacher: {
+        studentsTitle: "My students",
+        studentsEmpty: "No student yet.",
+        studentEmail: "Student email",
+        studentName: "Full name",
+        studentCohort: "Group / level (optional)",
+        inviteTitle: "Add a student",
+        inviteIntro: "An account is created with a temporary password you relay to the student yourself — it is never emailed from this page.",
+        inviteSubmit: "Create account",
+        inviteUnavailable: "Account creation is unavailable for this session.",
+        invitePending: "Creating…",
+        inviteSuccess: "Account created. Share these credentials with the student through a safe channel — they will not be shown again.",
+        inviteFailed: "The account could not be created. Check the email address and try again.",
+        credentialEmail: "Email",
+        credentialPassword: "Temporary password",
+        credentialNote: "Advise the student to change this password on first sign-in.",
+        cohortLabel: "Group",
+        activeLabel: "Active",
+        inactiveLabel: "Inactive",
+        assignmentsTitle: "My assignments",
+        assignmentsEmpty: "No assignment created yet.",
+        assignmentCreateTitle: "Create an assignment",
+        assignmentCreateIntro: "Visible to the student only once published.",
+        assignmentStudent: "Student",
+        selectStudent: "Select a student",
+        assignmentTitleLabel: "Title",
+        assignmentDescriptionLabel: "Short description (optional)",
+        assignmentInstructionsLabel: "Detailed instructions (optional)",
+        assignmentDueLabel: "Due date (optional)",
+        assignmentPublishNow: "Publish immediately (visible to the student)",
+        assignmentSubmit: "Create assignment",
+        assignmentUnavailable: "Creating assignments is unavailable for this session.",
+        assignmentPending: "Creating…",
+        assignmentSuccess: "Assignment created.",
+        assignmentFailed: "The assignment could not be created.",
+        assignmentFor: "For",
+        publish: "Publish",
+        close: "Close",
+        reopen: "Republish",
+        statusUpdateFailed: "The status could not be changed.",
+        resourcesTitle: "Documents & resources",
+        resourcesEmpty: "No document added yet.",
+        resourceAddTitle: "Add a document",
+        resourceAddIntro: "A file or an external link — never both at once.",
+        resourceTitleLabel: "Title",
+        resourceFileLabel: "File (optional)",
+        resourceUrlLabel: "Or external link (optional)",
+        resourceSubmit: "Add document",
+        resourceUnavailable: "Adding documents is unavailable for this session.",
+        resourcePending: "Sending…",
+        resourceSuccess: "Document added.",
+        resourceFailed: "The document could not be added. Check the file or link and try again.",
+        resourceBoth: "Choose a file or a link, not both.",
+        resourceNeither: "Choose a file or provide a link.",
+        submissionsTitle: "Submissions to review",
+        submissionsEmpty: "No submission to review yet.",
+        feedbackLabel: "Feedback to the student",
+        gradeLabel: "Grade out of 20 (optional)",
+        saveReview: "Save review",
+        reviewSaved: "Review saved.",
+        reviewFailed: "The review could not be saved.",
+        questionsTitle: "Student questions",
+        questionsEmpty: "No question yet.",
+        answerLabel: "Your answer",
+        sendAnswer: "Send answer",
+        answerSaved: "Answer sent.",
+        answerFailed: "The answer could not be sent.",
+        alreadyAnswered: "Already answered"
       }
     }
   };
@@ -394,15 +540,21 @@
 
   function clearPrivateDashboard() {
     state.dashboardData = null;
-    ["#todo-list", "#resources-list", "#submissions-list", "#questions-list"].forEach((selector) => {
+    [
+      "#todo-list", "#resources-list", "#submissions-list", "#questions-list",
+      "#teacher-students-list", "#teacher-assignments-list", "#teacher-resources-list",
+      "#teacher-submissions-list", "#teacher-questions-list"
+    ].forEach((selector) => {
       document.querySelector(selector)?.replaceChildren();
     });
-    ["#submission-form", "#question-form"].forEach((selector) => {
+    ["#submission-form", "#question-form", "#invite-student-form", "#create-assignment-form", "#add-resource-form"].forEach((selector) => {
       const form = document.querySelector(selector);
       if (!form) return;
       form.reset();
       setFormEnabled(form, false);
     });
+    const credential = document.querySelector("#invite-credential");
+    if (credential) { credential.hidden = true; credential.replaceChildren(); }
     const greeting = document.querySelector("#dashboard-greeting");
     if (greeting) {
       greeting.textContent = "";
@@ -589,7 +741,8 @@
       resources: array(payload.resources),
       submissions: array(payload.submissions).map(withAssignmentTitle),
       questions: array(payload.questions).map(withAssignmentTitle),
-      assignments: assignmentSource
+      assignments: assignmentSource,
+      students: array(payload.students)
     };
   }
 
@@ -783,10 +936,633 @@
     setCopyMessage(document.querySelector("#question-status"), canAsk ? "" : "dashboard.questionUnavailable", canAsk ? "neutral" : "warning");
   }
 
+  const ASSIGNMENT_STATUS_KEY = { draft: "statusDraft", published: "statusPublished", closed: "statusClosed" };
+  const SUBMISSION_STATUS_KEY = { submitted: "statusSubmitted", late: "statusLate", reviewed: "statusReviewed" };
+  const QUESTION_STATUS_KEY = { open: "statusOpen", answered: "statusAnswered", closed: "statusClosed" };
+
+  function statusLabel(map, status) {
+    const key = map[status];
+    return key ? getCopy(`teacher.${key}`) : (status || "—");
+  }
+
+  function statusPill(status, map) {
+    const pill = document.createElement("span");
+    pill.className = "portal-status-pill";
+    pill.dataset.status = status || "";
+    pill.textContent = statusLabel(map, status);
+    return pill;
+  }
+
+  function actionButton(action, label, extraClass = "secondary") {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = `button ${extraClass}`;
+    button.dataset.action = action;
+    return Object.assign(button, { textContent: label });
+  }
+
+  function studentRecordId(student) {
+    return limitedText(student?.user_id ?? student?.userId, 200);
+  }
+
+  function studentDisplayName(student) {
+    const name = limitedText(student?.profile?.full_name ?? student?.profile?.fullName, 240);
+    return name || studentRecordId(student).slice(0, 8);
+  }
+
+  function teacherStudentsById() {
+    const map = new Map();
+    (state.dashboardData?.students || []).forEach((student) => {
+      const id = studentRecordId(student);
+      if (id) map.set(id, studentDisplayName(student));
+    });
+    return map;
+  }
+
+  function renderStudentsRoster() {
+    const students = state.dashboardData?.students || [];
+    const container = document.querySelector("#teacher-students-list");
+    if (!container) return;
+    container.replaceChildren();
+    if (!students.length) {
+      const empty = document.createElement("p");
+      empty.className = "portal-empty";
+      empty.textContent = getCopy("teacher.studentsEmpty");
+      container.append(empty);
+      return;
+    }
+    students.forEach((student) => {
+      const article = document.createElement("article");
+      article.className = "portal-list-item";
+      const head = document.createElement("div");
+      head.className = "portal-item-head";
+      const title = document.createElement("h3");
+      title.textContent = studentDisplayName(student);
+      head.append(title);
+      const pill = document.createElement("span");
+      pill.className = "portal-status-pill";
+      pill.dataset.status = student.active ? "published" : "closed";
+      pill.textContent = student.active ? getCopy("teacher.activeLabel") : getCopy("teacher.inactiveLabel");
+      head.append(pill);
+      article.append(head);
+      if (limitedText(student.cohort, 120)) appendMeta(article, getCopy("teacher.cohortLabel"), student.cohort);
+      container.append(article);
+    });
+  }
+
+  function renderTeacherAssignments() {
+    const assignments = state.dashboardData?.assignments || [];
+    const container = document.querySelector("#teacher-assignments-list");
+    if (!container) return;
+    container.replaceChildren();
+    if (!assignments.length) {
+      const empty = document.createElement("p");
+      empty.className = "portal-empty";
+      empty.textContent = getCopy("teacher.assignmentsEmpty");
+      container.append(empty);
+      return;
+    }
+    const studentsById = teacherStudentsById();
+    assignments.forEach((assignment) => {
+      const article = document.createElement("article");
+      article.className = "portal-list-item";
+      article.dataset.assignmentId = limitedText(assignment.id, 200);
+      const head = document.createElement("div");
+      head.className = "portal-item-head";
+      const title = document.createElement("h3");
+      title.textContent = limitedText(assignment.title, 240) || "—";
+      head.append(title, statusPill(assignment.status, ASSIGNMENT_STATUS_KEY));
+      article.append(head);
+
+      const studentName = studentsById.get(limitedText(assignment.student_id, 200));
+      if (studentName) appendMeta(article, getCopy("teacher.assignmentFor"), studentName);
+      const description = limitedText(assignment.description);
+      if (description) {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = description;
+        article.append(paragraph);
+      }
+      const due = formatDate(assignment.due_at);
+      if (due) appendMeta(article, getCopy("dashboard.due"), due);
+
+      const actions = document.createElement("div");
+      actions.className = "portal-item-actions";
+      if (assignment.status === "draft") actions.append(actionButton("assignment-publish", getCopy("teacher.publish"), "primary"));
+      else if (assignment.status === "published") actions.append(actionButton("assignment-close", getCopy("teacher.close")));
+      else if (assignment.status === "closed") actions.append(actionButton("assignment-reopen", getCopy("teacher.reopen")));
+      if (actions.children.length) article.append(actions);
+
+      container.append(article);
+    });
+  }
+
+  function renderTeacherResources() {
+    const resources = state.dashboardData?.resources || [];
+    const container = document.querySelector("#teacher-resources-list");
+    if (!container) return;
+    container.replaceChildren();
+    if (!resources.length) {
+      const empty = document.createElement("p");
+      empty.className = "portal-empty";
+      empty.textContent = getCopy("teacher.resourcesEmpty");
+      container.append(empty);
+      return;
+    }
+    const assignmentTitles = new Map((state.dashboardData?.assignments || []).map((assignment) => [
+      limitedText(assignment.id, 200), limitedText(assignment.title, 240)
+    ]));
+    resources.forEach((resource) => {
+      const article = document.createElement("article");
+      article.className = "portal-list-item";
+      const title = document.createElement("h3");
+      title.textContent = limitedText(resource.title, 240) || "—";
+      article.append(title);
+      const assignmentTitle = assignmentTitles.get(limitedText(resource.assignment_id, 200));
+      if (assignmentTitle) appendMeta(article, getCopy("dashboard.assignment"), assignmentTitle);
+      const description = limitedText(resource.description);
+      if (description) {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = description;
+        article.append(paragraph);
+      }
+      const href = safeUrl(resource.url ?? resource.href ?? resource.signed_url ?? resource.external_url);
+      if (href) {
+        const link = document.createElement("a");
+        link.className = "portal-resource-link";
+        link.href = href;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = getCopy("dashboard.openResource");
+        article.append(link);
+      }
+      container.append(article);
+    });
+  }
+
+  function submissionFileLinks(item) {
+    const fileList = document.createElement("div");
+    fileList.className = "portal-file-list";
+    (Array.isArray(item.files) ? item.files.slice(0, 5) : []).forEach((file, index) => {
+      const href = safeUrl(file?.url ?? file?.href ?? file?.signedUrl ?? file?.signed_url);
+      if (!href) return;
+      const rawName = limitedText(file?.name ?? file?.fileName, 180)
+        .replace(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}-/i, "");
+      const link = document.createElement("a");
+      link.className = "portal-resource-link";
+      link.href = href;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = getCopy("dashboard.openSubmissionFile").replace("{name}", rawName || `${index + 1}`);
+      fileList.append(link);
+    });
+    return fileList;
+  }
+
+  function renderTeacherSubmissions() {
+    const submissions = state.dashboardData?.submissions || [];
+    const container = document.querySelector("#teacher-submissions-list");
+    if (!container) return;
+    container.replaceChildren();
+    if (!submissions.length) {
+      const empty = document.createElement("p");
+      empty.className = "portal-empty";
+      empty.textContent = getCopy("teacher.submissionsEmpty");
+      container.append(empty);
+      return;
+    }
+    submissions.forEach((submission) => {
+      const article = document.createElement("article");
+      article.className = "portal-list-item";
+      article.dataset.submissionId = limitedText(submission.id, 200);
+      const head = document.createElement("div");
+      head.className = "portal-item-head";
+      const title = document.createElement("h3");
+      title.textContent = limitedText(submission.assignmentTitle, 240) || "—";
+      head.append(title, statusPill(submission.status, SUBMISSION_STATUS_KEY));
+      article.append(head);
+
+      const submitted = formatDate(submission.submittedAt ?? submission.submitted_at);
+      if (submitted) appendMeta(article, getCopy("dashboard.submitted"), submitted);
+      const message = limitedText(submission.message);
+      if (message) {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = message;
+        article.append(paragraph);
+      }
+      const fileList = submissionFileLinks(submission);
+      if (fileList.children.length) article.append(fileList);
+
+      if (limitedText(submission.feedback)) {
+        const block = document.createElement("div");
+        block.className = "portal-answer";
+        const label = document.createElement("strong");
+        label.textContent = getCopy("teacher.feedbackLabel");
+        const text = document.createElement("p");
+        text.textContent = submission.feedback;
+        block.append(label, text);
+        article.append(block);
+      }
+
+      const form = document.createElement("form");
+      form.className = "portal-inline-form portal-review-form";
+      const feedbackField = document.createElement("div");
+      feedbackField.className = "portal-field";
+      const feedbackLabel = document.createElement("label");
+      feedbackLabel.textContent = getCopy("teacher.feedbackLabel");
+      const feedbackInput = document.createElement("textarea");
+      feedbackInput.name = "feedback";
+      feedbackInput.rows = 3;
+      feedbackInput.maxLength = 8000;
+      feedbackInput.value = limitedText(submission.feedback);
+      feedbackField.append(feedbackLabel, feedbackInput);
+
+      const gradeField = document.createElement("div");
+      gradeField.className = "portal-field";
+      const gradeLabel = document.createElement("label");
+      gradeLabel.textContent = getCopy("teacher.gradeLabel");
+      const gradeInput = document.createElement("input");
+      gradeInput.type = "number";
+      gradeInput.name = "grade";
+      gradeInput.min = "0";
+      gradeInput.max = "20";
+      gradeInput.step = "0.5";
+      if (submission.grade !== null && submission.grade !== undefined) gradeInput.value = String(submission.grade);
+      gradeField.append(gradeLabel, gradeInput);
+
+      const submit = document.createElement("button");
+      submit.type = "submit";
+      submit.className = "button primary";
+      submit.textContent = getCopy("teacher.saveReview");
+      const status = document.createElement("p");
+      status.className = "portal-form-message";
+      status.hidden = true;
+
+      form.append(feedbackField, gradeField, submit, status);
+      article.append(form);
+      container.append(article);
+    });
+  }
+
+  function renderTeacherQuestions() {
+    const questions = state.dashboardData?.questions || [];
+    const container = document.querySelector("#teacher-questions-list");
+    if (!container) return;
+    container.replaceChildren();
+    if (!questions.length) {
+      const empty = document.createElement("p");
+      empty.className = "portal-empty";
+      empty.textContent = getCopy("teacher.questionsEmpty");
+      container.append(empty);
+      return;
+    }
+    questions.forEach((question) => {
+      const article = document.createElement("article");
+      article.className = "portal-list-item";
+      article.dataset.questionId = limitedText(question.id, 200);
+      const head = document.createElement("div");
+      head.className = "portal-item-head";
+      const title = document.createElement("h3");
+      title.textContent = limitedText(question.assignmentTitle, 240) || "—";
+      head.append(title, statusPill(question.status, QUESTION_STATUS_KEY));
+      article.append(head);
+
+      const asked = formatDate(question.createdAt ?? question.created_at);
+      if (asked) appendMeta(article, getCopy("dashboard.asked"), asked);
+      const message = limitedText(question.message);
+      if (message) {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = message;
+        article.append(paragraph);
+      }
+
+      const answered = limitedText(question.answer);
+      if (answered) {
+        const block = document.createElement("div");
+        block.className = "portal-answer";
+        const label = document.createElement("strong");
+        label.textContent = getCopy("dashboard.answer");
+        const text = document.createElement("p");
+        text.textContent = answered;
+        block.append(label, text);
+        article.append(block);
+      } else {
+        const form = document.createElement("form");
+        form.className = "portal-inline-form portal-answer-form";
+        const field = document.createElement("div");
+        field.className = "portal-field";
+        const label = document.createElement("label");
+        label.textContent = getCopy("teacher.answerLabel");
+        const textarea = document.createElement("textarea");
+        textarea.name = "answer";
+        textarea.rows = 3;
+        textarea.maxLength = 8000;
+        textarea.required = true;
+        field.append(label, textarea);
+        const submit = document.createElement("button");
+        submit.type = "submit";
+        submit.className = "button primary";
+        submit.textContent = getCopy("teacher.sendAnswer");
+        const status = document.createElement("p");
+        status.className = "portal-form-message";
+        status.hidden = true;
+        form.append(field, submit, status);
+        article.append(form);
+      }
+      container.append(article);
+    });
+  }
+
+  function populateStudentSelect() {
+    const select = document.querySelector("#assignment-student");
+    if (!select) return false;
+    const previous = select.value;
+    select.replaceChildren();
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = getCopy("teacher.selectStudent");
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    select.append(placeholder);
+    (state.dashboardData?.students || []).filter((student) => student.active).forEach((student) => {
+      const id = studentRecordId(student);
+      if (!id) return;
+      const option = document.createElement("option");
+      option.value = id;
+      option.textContent = studentDisplayName(student);
+      if (id === previous) { option.selected = true; placeholder.selected = false; }
+      select.append(option);
+    });
+    return select.options.length > 1;
+  }
+
+  function populateTeacherAssignmentSelect() {
+    const select = document.querySelector("#resource-assignment");
+    if (!select) return false;
+    const previous = select.value;
+    select.replaceChildren();
+    const placeholder = document.createElement("option");
+    placeholder.value = "";
+    placeholder.textContent = getCopy("dashboard.selectAssignment");
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    select.append(placeholder);
+    (state.dashboardData?.assignments || []).forEach((assignment) => {
+      const id = limitedText(assignment.id, 200);
+      const title = limitedText(assignment.title, 240);
+      if (!id || !title) return;
+      const option = document.createElement("option");
+      option.value = id;
+      option.textContent = title;
+      if (id === previous) { option.selected = true; placeholder.selected = false; }
+      select.append(option);
+    });
+    return select.options.length > 1;
+  }
+
+  function configureTeacherForms() {
+    const teacherSession = state.dashboardData?.role === "teacher" && Boolean(state.session);
+
+    const inviteForm = document.querySelector("#invite-student-form");
+    setFormEnabled(inviteForm, Boolean(teacherSession && hasBackendMethod("inviteStudent")));
+
+    const hasStudents = populateStudentSelect();
+    const assignmentForm = document.querySelector("#create-assignment-form");
+    setFormEnabled(assignmentForm, Boolean(teacherSession && hasBackendMethod("createAssignment") && hasStudents));
+    setCopyMessage(document.querySelector("#assignment-form-status"), teacherSession && !hasStudents ? "teacher.assignmentUnavailable" : "", teacherSession && !hasStudents ? "warning" : "neutral");
+
+    const hasAssignments = populateTeacherAssignmentSelect();
+    const resourceForm = document.querySelector("#add-resource-form");
+    setFormEnabled(resourceForm, Boolean(teacherSession && hasBackendMethod("addResource") && hasAssignments));
+    setCopyMessage(document.querySelector("#resource-form-status"), teacherSession && !hasAssignments ? "teacher.resourceUnavailable" : "", teacherSession && !hasAssignments ? "warning" : "neutral");
+  }
+
+  function renderTeacherDashboardData() {
+    renderStudentsRoster();
+    renderTeacherAssignments();
+    renderTeacherResources();
+    renderTeacherSubmissions();
+    renderTeacherQuestions();
+    configureTeacherForms();
+  }
+
+  async function handleInviteStudent(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const status = document.querySelector("#invite-status");
+    const credentialBox = document.querySelector("#invite-credential");
+    if (credentialBox) { credentialBox.hidden = true; credentialBox.replaceChildren(); }
+    if (!await ensureSession() || !hasBackendMethod("inviteStudent")) {
+      setCopyMessage(status, "teacher.inviteUnavailable", "warning");
+      return;
+    }
+    if (!form.reportValidity()) return;
+
+    const submit = form.querySelector('button[type="submit"]');
+    submit.disabled = true;
+    const originalLabel = submit.textContent;
+    submit.textContent = getCopy("teacher.invitePending");
+    form.setAttribute("aria-busy", "true");
+    lockLanguageControls(true);
+    try {
+      const result = await state.backend.inviteStudent({
+        email: form.elements.email.value.trim(),
+        fullName: form.elements.fullName.value.trim(),
+        cohort: form.elements.cohort.value.trim()
+      });
+      if (result?.error) throw new Error("invite-failed");
+      form.reset();
+      setCopyMessage(status, "teacher.inviteSuccess", "success");
+      if (credentialBox && result) {
+        const dl = document.createElement("dl");
+        const emailTerm = document.createElement("dt");
+        emailTerm.textContent = getCopy("teacher.credentialEmail");
+        const emailValue = document.createElement("dd");
+        emailValue.textContent = limitedText(result.email, 254);
+        const passwordTerm = document.createElement("dt");
+        passwordTerm.textContent = getCopy("teacher.credentialPassword");
+        const passwordValue = document.createElement("dd");
+        passwordValue.textContent = limitedText(result.temporaryPassword, 200);
+        dl.append(emailTerm, emailValue, passwordTerm, passwordValue);
+        const note = document.createElement("p");
+        note.textContent = getCopy("teacher.credentialNote");
+        credentialBox.replaceChildren(dl, note);
+        credentialBox.hidden = false;
+      }
+      await loadDashboard();
+    } catch (error) {
+      setCopyMessage(status, "teacher.inviteFailed", "error");
+    } finally {
+      form.removeAttribute("aria-busy");
+      lockLanguageControls(false);
+      submit.disabled = false;
+      submit.textContent = originalLabel;
+    }
+  }
+
+  async function handleCreateAssignment(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const status = document.querySelector("#assignment-form-status");
+    if (!await ensureSession() || !hasBackendMethod("createAssignment")) {
+      setCopyMessage(status, "teacher.assignmentUnavailable", "warning");
+      return;
+    }
+    if (!form.reportValidity()) return;
+
+    const submit = form.querySelector('button[type="submit"]');
+    submit.disabled = true;
+    const originalLabel = submit.textContent;
+    submit.textContent = getCopy("teacher.assignmentPending");
+    form.setAttribute("aria-busy", "true");
+    lockLanguageControls(true);
+    try {
+      const result = await state.backend.createAssignment({
+        studentId: form.elements.studentId.value,
+        title: form.elements.title.value.trim(),
+        description: form.elements.description.value.trim(),
+        instructions: form.elements.instructions.value.trim(),
+        dueAt: form.elements.dueAt.value || null,
+        publish: form.elements.publish.checked
+      });
+      if (result?.error) throw new Error("assignment-failed");
+      form.reset();
+      form.elements.publish.checked = true;
+      setCopyMessage(status, "teacher.assignmentSuccess", "success");
+      await loadDashboard();
+    } catch (error) {
+      setCopyMessage(status, "teacher.assignmentFailed", "error");
+    } finally {
+      form.removeAttribute("aria-busy");
+      lockLanguageControls(false);
+      submit.disabled = false;
+      submit.textContent = originalLabel;
+    }
+  }
+
+  async function handleAssignmentAction(button) {
+    const article = button.closest("[data-assignment-id]");
+    const id = article?.dataset.assignmentId;
+    const action = button.dataset.action;
+    const nextStatus = action === "assignment-publish" ? "published" : action === "assignment-close" ? "closed" : action === "assignment-reopen" ? "published" : null;
+    if (!id || !nextStatus || !hasBackendMethod("setAssignmentStatus")) return;
+    button.disabled = true;
+    try {
+      const result = await state.backend.setAssignmentStatus({ id, status: nextStatus });
+      if (result?.error) throw new Error("status-failed");
+      await loadDashboard();
+    } catch (error) {
+      setCopyMessage(document.querySelector("#assignment-form-status"), "teacher.statusUpdateFailed", "error");
+      button.disabled = false;
+    }
+  }
+
+  async function handleAddResource(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const status = document.querySelector("#resource-form-status");
+    if (!await ensureSession() || !hasBackendMethod("addResource")) {
+      setCopyMessage(status, "teacher.resourceUnavailable", "warning");
+      return;
+    }
+    const fileInput = form.elements.file;
+    const urlValue = form.elements.externalUrl.value.trim();
+    const hasFile = fileInput.files.length > 0;
+    if (hasFile && urlValue) { setCopyMessage(status, "teacher.resourceBoth", "error"); return; }
+    if (!hasFile && !urlValue) { setCopyMessage(status, "teacher.resourceNeither", "error"); return; }
+    if (!form.elements.assignmentId.value || !form.elements.title.value.trim()) { form.reportValidity(); return; }
+
+    const submit = form.querySelector('button[type="submit"]');
+    submit.disabled = true;
+    const originalLabel = submit.textContent;
+    submit.textContent = getCopy("teacher.resourcePending");
+    form.setAttribute("aria-busy", "true");
+    lockLanguageControls(true);
+    try {
+      const result = await state.backend.addResource({
+        assignmentId: form.elements.assignmentId.value,
+        title: form.elements.title.value.trim(),
+        file: hasFile ? fileInput.files[0] : null,
+        externalUrl: hasFile ? null : urlValue
+      });
+      if (result?.error) throw new Error("resource-failed");
+      form.reset();
+      setCopyMessage(status, "teacher.resourceSuccess", "success");
+      await loadDashboard();
+    } catch (error) {
+      setCopyMessage(status, "teacher.resourceFailed", "error");
+    } finally {
+      form.removeAttribute("aria-busy");
+      lockLanguageControls(false);
+      submit.disabled = false;
+      submit.textContent = originalLabel;
+    }
+  }
+
+  async function handleReviewSubmission(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const article = form.closest("[data-submission-id]");
+    const id = article?.dataset.submissionId;
+    const status = form.querySelector(".portal-form-message");
+    if (!id || !await ensureSession() || !hasBackendMethod("reviewSubmission")) {
+      setMessage(status, getCopy("teacher.reviewFailed"), "error");
+      return;
+    }
+    const submit = form.querySelector('button[type="submit"]');
+    submit.disabled = true;
+    form.setAttribute("aria-busy", "true");
+    try {
+      const result = await state.backend.reviewSubmission({
+        id,
+        feedback: form.elements.feedback.value.trim(),
+        grade: form.elements.grade.value
+      });
+      if (result?.error) throw new Error("review-failed");
+      setMessage(status, getCopy("teacher.reviewSaved"), "success");
+      await loadDashboard();
+    } catch (error) {
+      setMessage(status, getCopy("teacher.reviewFailed"), "error");
+      submit.disabled = false;
+    } finally {
+      form.removeAttribute("aria-busy");
+    }
+  }
+
+  async function handleAnswerQuestion(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const article = form.closest("[data-question-id]");
+    const id = article?.dataset.questionId;
+    const status = form.querySelector(".portal-form-message");
+    if (!form.reportValidity()) return;
+    if (!id || !await ensureSession() || !hasBackendMethod("answerQuestion")) {
+      setMessage(status, getCopy("teacher.answerFailed"), "error");
+      return;
+    }
+    const submit = form.querySelector('button[type="submit"]');
+    submit.disabled = true;
+    form.setAttribute("aria-busy", "true");
+    try {
+      const result = await state.backend.answerQuestion({ id, answer: form.elements.answer.value.trim() });
+      if (result?.error) throw new Error("answer-failed");
+      setMessage(status, getCopy("teacher.answerSaved"), "success");
+      await loadDashboard();
+    } catch (error) {
+      setMessage(status, getCopy("teacher.answerFailed"), "error");
+      submit.disabled = false;
+    } finally {
+      form.removeAttribute("aria-busy");
+    }
+  }
+
   function renderDashboardData() {
     const data = state.dashboardData;
-    if (!data || data.role !== "student") {
+    if (!data || !["student", "teacher"].includes(data.role)) {
       renderDashboardAccessState();
+      return;
+    }
+    if (data.role === "teacher") {
+      renderTeacherDashboardData();
       return;
     }
     renderItems("#todo-list", data.todo, "todo", "dashboard.todoEmpty");
@@ -844,16 +1620,7 @@
       setText("#dashboard-gate-text", getCopy("dashboard.loadingData"));
       return;
     }
-    if (state.dashboardData?.role === "teacher") {
-      gate.hidden = false;
-      content.hidden = true;
-      if (signOut) signOut.hidden = false;
-      if (action) action.hidden = true;
-      setText("#dashboard-gate-title", getCopy("dashboard.teacherTitle"));
-      setText("#dashboard-gate-text", getCopy("dashboard.teacherText"));
-      return;
-    }
-    if (state.dashboardData.role !== "student") {
+    if (!["student", "teacher"].includes(state.dashboardData.role)) {
       gate.hidden = false;
       content.hidden = true;
       if (signOut) signOut.hidden = false;
@@ -864,8 +1631,11 @@
       return;
     }
 
+    const teacherContent = document.querySelector("#dashboard-content-teacher");
+    const isTeacher = state.dashboardData.role === "teacher";
     gate.hidden = true;
-    content.hidden = false;
+    content.hidden = isTeacher;
+    if (teacherContent) teacherContent.hidden = !isTeacher;
     if (signOut) signOut.hidden = false;
     if (action) action.hidden = false;
     const fullName = limitedText(state.dashboardData?.profile?.fullName, 240);
@@ -1082,6 +1852,20 @@
     document.querySelector("#submission-file")?.addEventListener("change", updateUploadButton);
     document.querySelector("#submission-assignment")?.addEventListener("change", updateUploadButton);
     document.querySelector("#question-form")?.addEventListener("submit", handleQuestion);
+
+    document.querySelector("#invite-student-form")?.addEventListener("submit", handleInviteStudent);
+    document.querySelector("#create-assignment-form")?.addEventListener("submit", handleCreateAssignment);
+    document.querySelector("#add-resource-form")?.addEventListener("submit", handleAddResource);
+    document.querySelector("#teacher-assignments-list")?.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-action]");
+      if (button) handleAssignmentAction(button);
+    });
+    document.querySelector("#teacher-submissions-list")?.addEventListener("submit", (event) => {
+      if (event.target.classList.contains("portal-review-form")) handleReviewSubmission(event);
+    });
+    document.querySelector("#teacher-questions-list")?.addEventListener("submit", (event) => {
+      if (event.target.classList.contains("portal-answer-form")) handleAnswerQuestion(event);
+    });
   }
 
   async function init() {

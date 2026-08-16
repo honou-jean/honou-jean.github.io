@@ -271,6 +271,43 @@
 }
 
 .portal-submit { width: 100%; }
+.portal-checkbox { display: flex; align-items: center; gap: 10px; color: var(--ink); font-size: .84rem; }
+.portal-checkbox input { width: 17px; height: 17px; accent-color: var(--teal); }
+.portal-credential-reveal {
+  padding: 16px;
+  border: 1px dashed var(--teal);
+  border-radius: 8px;
+  background: var(--tint);
+  color: var(--ink);
+  font-size: .84rem;
+}
+.portal-credential-reveal dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 10px; margin: 0 0 10px; }
+.portal-credential-reveal dt { color: var(--teal-dark); font-weight: 800; }
+.portal-credential-reveal dd { margin: 0; font-family: ui-monospace, "Cascadia Code", Consolas, monospace; overflow-wrap: anywhere; }
+.portal-credential-reveal p { margin: 0; color: var(--slate); font-size: .76rem; }
+.portal-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.portal-status-pill[data-status="draft"] { background: #e7e2d4; color: #6b5c2e; }
+.portal-status-pill[data-status="published"] { background: #dff0ec; color: #1e6f5c; }
+.portal-status-pill[data-status="closed"] { background: #e3e7ea; color: #4a5a63; }
+.portal-status-pill[data-status="submitted"] { background: #e2ecf6; color: #2c5a86; }
+.portal-status-pill[data-status="late"] { background: #f8e2d6; color: #94441a; }
+.portal-status-pill[data-status="reviewed"] { background: #dff0ec; color: #1e6f5c; }
+.portal-status-pill[data-status="open"] { background: #f8e2d6; color: #94441a; }
+.portal-status-pill[data-status="answered"] { background: #dff0ec; color: #1e6f5c; }
+.portal-item-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.portal-item-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.portal-item-actions .button { min-height: 38px; padding: 0 14px; font-size: .74rem; }
+.portal-inline-form { display: grid; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line); }
 
 .portal-dashboard-hero {
   padding: calc(var(--header-height) + 66px) 0 70px;

@@ -7,6 +7,6 @@
  * Never put an sb_secret_... or legacy service_role key in this file.
  */
 window.SUPABASE_CONFIG = Object.freeze({
-  url: "",
-  publishableKey: ""
+  url: "https://tdtrdjndyixmvkquttpr.supabase.co",
+  publishableKey: "sb_publishable_4uKbELNcSJxVoe0HH1Nc9w_S-R1ED0h"
 });

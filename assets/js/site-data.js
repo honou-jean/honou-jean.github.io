@@ -210,7 +210,7 @@ window.SITE_DATA = {
       number: "01",
       featured: true,
       theme: "biometrics",
-      coverImage: null,
+      coverImage: { src: "assets/images/projects/biometrics/cover.jpg", alt: { fr: "Gros plan macro sur un iris humain, illustrant l’identification biométrique.", en: "Macro close-up of a human iris, illustrating biometric identification." } },
       media: [],
       category: { fr: "Intelligence artificielle • Biométrie", en: "Artificial Intelligence • Biometrics" },
       title: { fr: "Conception et développement d’un système d’identification biométrique multimodal", en: "Design and Development of a Multimodal Biometric Identification System" },
@@ -227,7 +227,7 @@ window.SITE_DATA = {
       number: "02",
       featured: false,
       theme: "poisson",
-      coverImage: null,
+      coverImage: { src: "assets/images/projects/poisson/cover.jpg", alt: { fr: "Câble de recharge branché sur une borne de recharge pour véhicule électrique.", en: "Charging cable plugged into an electric-vehicle charging station." } },
       media: [],
       category: { fr: "Probabilités • Statistiques", en: "Probability • Statistics" },
       title: { fr: "Processus de Poisson & données réelles", en: "Poisson Processes & Real-World Data" },
@@ -244,7 +244,7 @@ window.SITE_DATA = {
       number: "03",
       featured: false,
       theme: "scientific",
-      coverImage: null,
+      coverImage: { src: "assets/images/projects/scientific-computing/cover.jpg", alt: { fr: "Vagues déferlant sur des rochers, une image du phénomène ondulatoire modélisé.", en: "Waves breaking over rocks, a real-world instance of the wave phenomenon being modelled." } },
       media: [],
       category: { fr: "Mathématiques appliquées", en: "Applied Mathematics" },
       title: { fr: "Calcul scientifique & modélisation numérique", en: "Scientific Computing & Numerical Modelling" },
@@ -269,7 +269,7 @@ window.SITE_DATA = {
   projectDetails: {
     "multimodal-biometrics": {
       number: "01",
-      coverImage: null,
+      coverImage: { src: "assets/images/projects/biometrics/cover.jpg", alt: { fr: "Gros plan macro sur un iris humain, illustrant l’identification biométrique.", en: "Macro close-up of a human iris, illustrating biometric identification." } },
       media: [],
       category: { fr: "Intelligence artificielle • Biométrie", en: "Artificial Intelligence • Biometrics" },
       title: { fr: "Conception et développement d’un système d’identification biométrique multimodal", en: "Design and Development of a Multimodal Biometric Identification System" },
@@ -291,7 +291,7 @@ window.SITE_DATA = {
     },
     "poisson-processes": {
       number: "02",
-      coverImage: null,
+      coverImage: { src: "assets/images/projects/poisson/cover.jpg", alt: { fr: "Câble de recharge branché sur une borne de recharge pour véhicule électrique.", en: "Charging cable plugged into an electric-vehicle charging station." } },
       media: [],
       category: { fr: "Probabilités • Statistiques", en: "Probability • Statistics" },
       title: { fr: "Processus de Poisson & données réelles", en: "Poisson Processes & Real-World Data" },
@@ -311,7 +311,7 @@ window.SITE_DATA = {
     },
     "scientific-computing": {
       number: "03",
-      coverImage: null,
+      coverImage: { src: "assets/images/projects/scientific-computing/cover.jpg", alt: { fr: "Vagues déferlant sur des rochers, une image du phénomène ondulatoire modélisé.", en: "Waves breaking over rocks, a real-world instance of the wave phenomenon being modelled." } },
       media: [],
       category: { fr: "Mathématiques appliquées", en: "Applied Mathematics" },
       title: { fr: "Calcul scientifique & modélisation numérique", en: "Scientific Computing & Numerical Modelling" },

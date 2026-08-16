@@ -1,0 +1,9 @@
+# Project cover photo sources
+
+Real photographs used as project-card and detail-page cover images, replacing the earlier CSS-only placeholder diagrams at the owner's request. Each image is a real, thematically related photograph — not a screenshot or figure from the actual projects, which do not yet have public visual material of their own.
+
+- `biometrics/cover.jpg` — [Iris Macro, Eye close-up](https://commons.wikimedia.org/wiki/File:Iris_Macro,_Eye_close-up_(11622304153).jpg) by Matt Ming, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). Cropped and re-encoded for web delivery.
+- `poisson/cover.jpg` — [Close-up of an electric car charging station](https://commons.wikimedia.org/wiki/File:Close-up_of_an_electric_car_charging_station.jpg), [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). Cropped and re-encoded for web delivery.
+- `scientific-computing/cover.jpg` — [Waves at La Corniche](https://commons.wikimedia.org/wiki/File:Waves_at_La_Corniche.jpg), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Cropped and re-encoded for web delivery.
+
+All three are sourced from Wikimedia Commons and were chosen to avoid featuring identifiable people, brand-heavy scenes, or any claim of depicting the real systems described on this site.

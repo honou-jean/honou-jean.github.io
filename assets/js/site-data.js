@@ -18,6 +18,14 @@ window.SITE_DATA = {
     github: "https://github.com/honou-jean"
   },
 
+  applicationDomains: [
+    { fr: "Banque", en: "Banking" },
+    { fr: "Assurance", en: "Insurance" },
+    { fr: "Télécommunications", en: "Telecommunications" },
+    { fr: "Vision par ordinateur", en: "Computer Vision" },
+    { fr: "Machine Learning", en: "Machine Learning" }
+  ],
+
   documents: {
     cv: { path: "assets/documents/cv/cv-koessivi-jean-honou.pdf", available: true }
   },

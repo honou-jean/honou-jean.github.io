@@ -124,6 +124,12 @@
     return `<svg class="expertise-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
   }
 
+  function renderApplicationDomains() {
+    const list = $('#application-domains-list');
+    if (!list || !Array.isArray(data.applicationDomains)) return;
+    list.innerHTML = data.applicationDomains.map(domain => `<span role="listitem">${local(domain)}</span>`).join("");
+  }
+
   function renderExpertise() {
     const fullList = $('#expertise-list');
     if (fullList) {
@@ -280,6 +286,7 @@
   }
 
   function renderDynamicContent() {
+    renderApplicationDomains();
     renderExpertise();
     renderTechnologies();
     renderBackground();

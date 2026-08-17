@@ -21,7 +21,6 @@ window.SITE_DATA = {
   applicationDomains: [
     { fr: "Banque", en: "Banking" },
     { fr: "Assurance", en: "Insurance" },
-    { fr: "Télécommunications", en: "Telecommunications" },
     { fr: "Vision par ordinateur", en: "Computer Vision" },
     { fr: "Machine Learning", en: "Machine Learning" }
   ],

@@ -150,17 +150,6 @@
     }));
   }
 
-  function dampedSinePoints() {
-    const samples = 40;
-    const points = [];
-    for (let i = 0; i <= samples; i += 1) {
-      const x = i / samples;
-      const y = 0.5 - 0.42 * Math.exp(-x * 2.6) * Math.sin(x * Math.PI * 3.1);
-      points.push(`${(x * 100).toFixed(2)},${(y * 100).toFixed(2)}`);
-    }
-    return points.join(" ");
-  }
-
   function appendGeneratedVisual(scene, generator) {
     if (generator === "poisson-scatter") {
       poissonScatterPoints().forEach((point) => {
@@ -169,19 +158,6 @@
         dot.style.setProperty("--y", point.y);
         scene.append(dot);
       });
-      return;
-    }
-    if (generator === "damped-sine") {
-      const svgNamespace = "http://www.w3.org/2000/svg";
-      const svg = document.createElementNS(svgNamespace, "svg");
-      svg.setAttribute("class", "wave-svg");
-      svg.setAttribute("viewBox", "0 0 100 100");
-      svg.setAttribute("preserveAspectRatio", "none");
-      svg.setAttribute("aria-hidden", "true");
-      const polyline = document.createElementNS(svgNamespace, "polyline");
-      polyline.setAttribute("points", dampedSinePoints());
-      svg.append(polyline);
-      scene.append(svg);
     }
   }
 

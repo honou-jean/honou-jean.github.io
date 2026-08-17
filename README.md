@@ -211,13 +211,7 @@ Lorsque Node.js est installé, lancez le test d’adaptateur depuis la racine av
 
 ## Domaine et SEO
 
-Avant publication, remplacez `YOUR_DOMAIN` dans :
-
-- `index.html` ;
-- `robots.txt` ;
-- `sitemap.xml`.
-
-Le portrait local existe, mais aucune balise `og:image` n’est publiée tant que son URL publique absolue n’est pas connue. Après publication du site, vous pouvez ajouter cette URL PNG dans le `<head>` de `index.html`.
+Le site est publié sur GitHub Pages à l’adresse `https://honou-jean.github.io/`. Les balises `og:url`, `canonical`, `robots.txt` et `sitemap.xml` pointent vers ce domaine.
 
 ## Architecture
 
@@ -260,10 +254,6 @@ portfolio-jean/
 └── docs/student-portal-setup.md
 ```
 
-## Déploiement futur
+## Déploiement
 
-- GitHub Pages : poussez le dossier dans un dépôt puis activez Pages dans les paramètres.
-- Netlify ou Vercel : importez le dépôt comme site statique, sans commande de compilation.
-- Hébergement classique : envoyez tous les fichiers en conservant exactement l’arborescence.
-
-Aucun déploiement n’est réalisé automatiquement.
+Le site est hébergé sur GitHub Pages, servi depuis la branche `master` du dépôt `honou-jean/honou-jean.github.io`. Toute modification poussée sur `master` est republiée automatiquement par GitHub (en général en 1 à 2 minutes).

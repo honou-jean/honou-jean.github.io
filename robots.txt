@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Replace YOUR_DOMAIN before deployment.
-Sitemap: https://YOUR_DOMAIN/sitemap.xml
+Sitemap: https://honou-jean.github.io/sitemap.xml

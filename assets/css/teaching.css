@@ -330,6 +330,8 @@
 .portal-item-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
 .portal-item-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .portal-item-actions .button { min-height: 38px; padding: 0 14px; font-size: .74rem; }
+.button.danger { border-color: #94441a; color: #94441a; }
+.button.danger:hover { border-color: #94441a; background: #94441a; color: var(--white); }
 .portal-inline-form { display: grid; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line); }
 
 .portal-dashboard-hero {

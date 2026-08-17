@@ -159,6 +159,12 @@
         cohortLabel: "Groupe",
         activeLabel: "Actif",
         inactiveLabel: "Inactif",
+        activate: "Réactiver",
+        deactivate: "Désactiver",
+        studentUpdateFailed: "Le statut de l’élève n’a pas pu être modifié.",
+        deleteStudent: "Supprimer l’élève",
+        deleteStudentConfirm: "Supprimer {name} ? Cette action supprimera aussi, de façon définitive, {assignments} activité(s), {resources} document(s), {submissions} dépôt(s) et {questions} question(s) liés à cet élève. Le compte de connexion de l’élève lui-même n’est pas supprimé.",
+        studentDeleteFailed: "L’élève n’a pas pu être supprimé.",
         assignmentsTitle: "Mes activités",
         assignmentsEmpty: "Aucune activité créée pour le moment.",
         assignmentCreateTitle: "Créer une activité",
@@ -180,6 +186,9 @@
         close: "Clôturer",
         reopen: "Republier",
         statusUpdateFailed: "Le statut n’a pas pu être modifié.",
+        deleteAssignment: "Supprimer",
+        deleteAssignmentConfirm: "Supprimer l’activité « {title} » ? Cette action supprimera aussi, de façon définitive, {resources} document(s), {submissions} dépôt(s) et {questions} question(s) liés à cette activité.",
+        assignmentDeleteFailed: "L’activité n’a pas pu être supprimée.",
         resourcesTitle: "Documents & ressources",
         resourcesEmpty: "Aucun document ajouté pour le moment.",
         resourceAddTitle: "Ajouter un document",
@@ -194,6 +203,9 @@
         resourceFailed: "Le document n’a pas pu être ajouté. Vérifiez le fichier ou le lien puis réessayez.",
         resourceBoth: "Choisissez un fichier ou un lien, pas les deux.",
         resourceNeither: "Choisissez un fichier ou indiquez un lien.",
+        deleteResource: "Supprimer",
+        deleteResourceConfirm: "Supprimer le document « {title} » ?",
+        resourceDeleteFailed: "Le document n’a pas pu être supprimé.",
         submissionsTitle: "Dépôts à corriger",
         submissionsEmpty: "Aucun dépôt à corriger pour le moment.",
         feedbackLabel: "Retour à l’élève",
@@ -360,6 +372,12 @@
         cohortLabel: "Group",
         activeLabel: "Active",
         inactiveLabel: "Inactive",
+        activate: "Reactivate",
+        deactivate: "Deactivate",
+        studentUpdateFailed: "The student's status could not be changed.",
+        deleteStudent: "Remove student",
+        deleteStudentConfirm: "Remove {name}? This will also permanently delete {assignments} assignment(s), {resources} document(s), {submissions} submission(s) and {questions} question(s) linked to this student. The student's own sign-in account is not deleted.",
+        studentDeleteFailed: "The student could not be removed.",
         assignmentsTitle: "My assignments",
         assignmentsEmpty: "No assignment created yet.",
         assignmentCreateTitle: "Create an assignment",
@@ -381,6 +399,9 @@
         close: "Close",
         reopen: "Republish",
         statusUpdateFailed: "The status could not be changed.",
+        deleteAssignment: "Delete",
+        deleteAssignmentConfirm: "Delete the assignment “{title}”? This will also permanently delete {resources} document(s), {submissions} submission(s) and {questions} question(s) linked to it.",
+        assignmentDeleteFailed: "The assignment could not be deleted.",
         resourcesTitle: "Documents & resources",
         resourcesEmpty: "No document added yet.",
         resourceAddTitle: "Add a document",
@@ -395,6 +416,9 @@
         resourceFailed: "The document could not be added. Check the file or link and try again.",
         resourceBoth: "Choose a file or a link, not both.",
         resourceNeither: "Choose a file or provide a link.",
+        deleteResource: "Delete",
+        deleteResourceConfirm: "Delete the document “{title}”?",
+        resourceDeleteFailed: "The document could not be deleted.",
         submissionsTitle: "Submissions to review",
         submissionsEmpty: "No submission to review yet.",
         feedbackLabel: "Feedback to the student",
@@ -998,6 +1022,7 @@
     students.forEach((student) => {
       const article = document.createElement("article");
       article.className = "portal-list-item";
+      article.dataset.studentId = studentRecordId(student);
       const head = document.createElement("div");
       head.className = "portal-item-head";
       const title = document.createElement("h3");
@@ -1010,6 +1035,16 @@
       head.append(pill);
       article.append(head);
       if (limitedText(student.cohort, 120)) appendMeta(article, getCopy("teacher.cohortLabel"), student.cohort);
+
+      const actions = document.createElement("div");
+      actions.className = "portal-item-actions";
+      actions.append(actionButton(
+        student.active ? "student-deactivate" : "student-activate",
+        student.active ? getCopy("teacher.deactivate") : getCopy("teacher.activate")
+      ));
+      actions.append(actionButton("student-delete", getCopy("teacher.deleteStudent"), "danger"));
+      article.append(actions);
+
       container.append(article);
     });
   }
@@ -1054,7 +1089,8 @@
       if (assignment.status === "draft") actions.append(actionButton("assignment-publish", getCopy("teacher.publish"), "primary"));
       else if (assignment.status === "published") actions.append(actionButton("assignment-close", getCopy("teacher.close")));
       else if (assignment.status === "closed") actions.append(actionButton("assignment-reopen", getCopy("teacher.reopen")));
-      if (actions.children.length) article.append(actions);
+      actions.append(actionButton("assignment-delete", getCopy("teacher.deleteAssignment"), "danger"));
+      article.append(actions);
 
       container.append(article);
     });
@@ -1078,6 +1114,7 @@
     resources.forEach((resource) => {
       const article = document.createElement("article");
       article.className = "portal-list-item";
+      article.dataset.resourceId = limitedText(resource.id, 200);
       const title = document.createElement("h3");
       title.textContent = limitedText(resource.title, 240) || "—";
       article.append(title);
@@ -1099,6 +1136,10 @@
         link.textContent = getCopy("dashboard.openResource");
         article.append(link);
       }
+      const actions = document.createElement("div");
+      actions.className = "portal-item-actions";
+      actions.append(actionButton("resource-delete", getCopy("teacher.deleteResource"), "danger"));
+      article.append(actions);
       container.append(article);
     });
   }
@@ -1403,6 +1444,84 @@
     }
   }
 
+  function relatedCountsForAssignments(assignmentIds) {
+    const ids = new Set(assignmentIds);
+    const matches = (item) => ids.has(limitedText(item?.assignment_id, 200));
+    return {
+      resources: (state.dashboardData?.resources || []).filter(matches).length,
+      submissions: (state.dashboardData?.submissions || []).filter(matches).length,
+      questions: (state.dashboardData?.questions || []).filter(matches).length
+    };
+  }
+
+  async function handleStudentAction(button) {
+    const article = button.closest("[data-student-id]");
+    const userId = article?.dataset.studentId;
+    const action = button.dataset.action;
+    if (!userId) return;
+    const status = document.querySelector("#invite-status");
+
+    if (action === "student-activate" || action === "student-deactivate") {
+      if (!hasBackendMethod("setStudentActive")) return;
+      button.disabled = true;
+      try {
+        const result = await state.backend.setStudentActive({ userId, active: action === "student-activate" });
+        if (result?.error) throw new Error("student-update-failed");
+        await loadDashboard();
+      } catch (error) {
+        setCopyMessage(status, "teacher.studentUpdateFailed", "error");
+        button.disabled = false;
+      }
+      return;
+    }
+
+    if (action === "student-delete") {
+      if (!hasBackendMethod("deleteStudent")) return;
+      const student = (state.dashboardData?.students || []).find((item) => studentRecordId(item) === userId);
+      const name = studentDisplayName(student || {});
+      const assignmentIds = (state.dashboardData?.assignments || [])
+        .filter((assignment) => limitedText(assignment.student_id, 200) === userId)
+        .map((assignment) => limitedText(assignment.id, 200));
+      const counts = relatedCountsForAssignments(assignmentIds);
+      const message = getCopy("teacher.deleteStudentConfirm")
+        .replace("{name}", name)
+        .replace("{assignments}", String(assignmentIds.length))
+        .replace("{resources}", String(counts.resources))
+        .replace("{submissions}", String(counts.submissions))
+        .replace("{questions}", String(counts.questions));
+      if (!window.confirm(message)) return;
+      button.disabled = true;
+      try {
+        const result = await state.backend.deleteStudent({ userId });
+        if (result?.error) throw new Error("student-delete-failed");
+        await loadDashboard();
+      } catch (error) {
+        setCopyMessage(status, "teacher.studentDeleteFailed", "error");
+        button.disabled = false;
+      }
+    }
+  }
+
+  async function handleResourceAction(button) {
+    const article = button.closest("[data-resource-id]");
+    const id = article?.dataset.resourceId;
+    const action = button.dataset.action;
+    if (!id || action !== "resource-delete" || !hasBackendMethod("deleteResource")) return;
+    const resource = (state.dashboardData?.resources || []).find((item) => limitedText(item.id, 200) === id);
+    const title = limitedText(resource?.title, 240);
+    const message = getCopy("teacher.deleteResourceConfirm").replace("{title}", title);
+    if (!window.confirm(message)) return;
+    button.disabled = true;
+    try {
+      const result = await state.backend.deleteResource({ id });
+      if (result?.error) throw new Error("resource-delete-failed");
+      await loadDashboard();
+    } catch (error) {
+      setCopyMessage(document.querySelector("#resource-form-status"), "teacher.resourceDeleteFailed", "error");
+      button.disabled = false;
+    }
+  }
+
   async function handleCreateAssignment(event) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -1447,8 +1566,33 @@
     const article = button.closest("[data-assignment-id]");
     const id = article?.dataset.assignmentId;
     const action = button.dataset.action;
+    if (!id) return;
+
+    if (action === "assignment-delete") {
+      if (!hasBackendMethod("deleteAssignment")) return;
+      const assignment = (state.dashboardData?.assignments || []).find((item) => limitedText(item.id, 200) === id);
+      const title = limitedText(assignment?.title, 240);
+      const counts = relatedCountsForAssignments([id]);
+      const message = getCopy("teacher.deleteAssignmentConfirm")
+        .replace("{title}", title)
+        .replace("{resources}", String(counts.resources))
+        .replace("{submissions}", String(counts.submissions))
+        .replace("{questions}", String(counts.questions));
+      if (!window.confirm(message)) return;
+      button.disabled = true;
+      try {
+        const result = await state.backend.deleteAssignment({ id });
+        if (result?.error) throw new Error("assignment-delete-failed");
+        await loadDashboard();
+      } catch (error) {
+        setCopyMessage(document.querySelector("#assignment-form-status"), "teacher.assignmentDeleteFailed", "error");
+        button.disabled = false;
+      }
+      return;
+    }
+
     const nextStatus = action === "assignment-publish" ? "published" : action === "assignment-close" ? "closed" : action === "assignment-reopen" ? "published" : null;
-    if (!id || !nextStatus || !hasBackendMethod("setAssignmentStatus")) return;
+    if (!nextStatus || !hasBackendMethod("setAssignmentStatus")) return;
     button.disabled = true;
     try {
       const result = await state.backend.setAssignmentStatus({ id, status: nextStatus });
@@ -1875,9 +2019,17 @@
     document.querySelector("#invite-student-form")?.addEventListener("submit", handleInviteStudent);
     document.querySelector("#create-assignment-form")?.addEventListener("submit", handleCreateAssignment);
     document.querySelector("#add-resource-form")?.addEventListener("submit", handleAddResource);
+    document.querySelector("#teacher-students-list")?.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-action]");
+      if (button) handleStudentAction(button);
+    });
     document.querySelector("#teacher-assignments-list")?.addEventListener("click", (event) => {
       const button = event.target.closest("button[data-action]");
       if (button) handleAssignmentAction(button);
+    });
+    document.querySelector("#teacher-resources-list")?.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-action]");
+      if (button) handleResourceAction(button);
     });
     document.querySelector("#teacher-submissions-list")?.addEventListener("submit", (event) => {
       if (event.target.classList.contains("portal-review-form")) handleReviewSubmission(event);

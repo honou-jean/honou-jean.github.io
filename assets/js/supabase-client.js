@@ -847,6 +847,146 @@
     }
   }
 
+  async function setStudentActive(input) {
+    const userId = input && input.userId;
+    const active = Boolean(input && input.active);
+    if (!validUuid(userId)) fail("INVALID_INPUT", "A valid student identifier is required.");
+
+    try {
+      const context = await authenticatedContext();
+      if (context.profile.role !== "teacher") fail("ACCESS_DENIED", "Only teachers can update students.");
+      return await queryOrFail(
+        context.client.from("students").update({ active }).eq("user_id", userId)
+          .select("user_id, active").single(),
+        "STUDENT_UPDATE_FAILED",
+        "The student could not be updated."
+      );
+    } catch (error) {
+      return backendFailure(error, "STUDENT_UPDATE_FAILED", "The student could not be updated.");
+    }
+  }
+
+  // Storage RLS for both buckets is keyed off the *assignment* still existing
+  // (see can_manage_teaching_resource_object / can_read_submission_object in
+  // the migration), so files must be removed before their assignment row --
+  // once the row is gone, the objects would be permanently unreachable.
+  async function collectAssignmentStorageObjects(client, assignmentIds) {
+    if (!assignmentIds.length) return { resourcePaths: [], submissionPaths: [] };
+    const resourceRows = await queryOrFail(
+      client.from("resources").select("storage_path").in("assignment_id", assignmentIds),
+      "RESOURCE_LOOKUP_FAILED",
+      "The linked resources could not be read."
+    );
+    const submissionRows = await queryOrFail(
+      client.from("submissions").select("file_paths").in("assignment_id", assignmentIds),
+      "SUBMISSION_LOOKUP_FAILED",
+      "The linked submissions could not be read."
+    );
+    return {
+      resourcePaths: (resourceRows || []).map((row) => row.storage_path).filter(Boolean),
+      submissionPaths: (submissionRows || []).flatMap((row) => Array.isArray(row.file_paths) ? row.file_paths : [])
+    };
+  }
+
+  async function removeStorageObjectsBestEffort(client, bucket, paths) {
+    if (!paths.length) return;
+    try {
+      await client.storage.from(bucket).remove(paths);
+    } catch (_error) {
+      // Best-effort cleanup; the row deletion that follows is authoritative for the app's own data.
+    }
+  }
+
+  async function deleteResource(input) {
+    const id = input && input.id;
+    if (!validUuid(id)) fail("INVALID_INPUT", "A valid resource identifier is required.");
+
+    try {
+      const context = await authenticatedContext();
+      if (context.profile.role !== "teacher") fail("ACCESS_DENIED", "Only teachers can delete resources.");
+      const resource = await queryOrFail(
+        context.client.from("resources").select("id, storage_path").eq("id", id).single(),
+        "RESOURCE_UNAVAILABLE",
+        "The resource is unavailable."
+      );
+      if (resource.storage_path) {
+        await removeStorageObjectsBestEffort(context.client, RESOURCE_BUCKET, [resource.storage_path]);
+      }
+      await queryOrFail(
+        context.client.from("resources").delete().eq("id", id).select("id").single(),
+        "RESOURCE_DELETE_FAILED",
+        "The resource could not be deleted."
+      );
+      return { id };
+    } catch (error) {
+      return backendFailure(error, "RESOURCE_DELETE_FAILED", "The resource could not be deleted.");
+    }
+  }
+
+  async function deleteAssignment(input) {
+    const id = input && input.id;
+    if (!validUuid(id)) fail("INVALID_INPUT", "A valid assignment identifier is required.");
+
+    try {
+      const context = await authenticatedContext();
+      if (context.profile.role !== "teacher") fail("ACCESS_DENIED", "Only teachers can delete assignments.");
+      const assignment = await queryOrFail(
+        context.client.from("assignments").select("id, teacher_id").eq("id", id).single(),
+        "ASSIGNMENT_UNAVAILABLE",
+        "The assignment is unavailable."
+      );
+      if (assignment.teacher_id !== context.user.id) fail("ACCESS_DENIED", "This assignment does not belong to you.");
+
+      const { resourcePaths, submissionPaths } = await collectAssignmentStorageObjects(context.client, [id]);
+      await removeStorageObjectsBestEffort(context.client, RESOURCE_BUCKET, resourcePaths);
+      await removeStorageObjectsBestEffort(context.client, SUBMISSION_BUCKET, submissionPaths);
+
+      await queryOrFail(
+        context.client.from("assignments").delete().eq("id", id).select("id").single(),
+        "ASSIGNMENT_DELETE_FAILED",
+        "The assignment could not be deleted."
+      );
+      return { id };
+    } catch (error) {
+      return backendFailure(error, "ASSIGNMENT_DELETE_FAILED", "The assignment could not be deleted.");
+    }
+  }
+
+  async function deleteStudent(input) {
+    const userId = input && input.userId;
+    if (!validUuid(userId)) fail("INVALID_INPUT", "A valid student identifier is required.");
+
+    try {
+      const context = await authenticatedContext();
+      if (context.profile.role !== "teacher") fail("ACCESS_DENIED", "Only teachers can remove students.");
+      const student = await queryOrFail(
+        context.client.from("students").select("user_id, teacher_id").eq("user_id", userId).single(),
+        "STUDENT_UNAVAILABLE",
+        "The student is unavailable."
+      );
+      if (student.teacher_id !== context.user.id) fail("ACCESS_DENIED", "This student is not assigned to you.");
+
+      const assignmentRows = await queryOrFail(
+        context.client.from("assignments").select("id").eq("student_id", userId),
+        "ASSIGNMENT_LOOKUP_FAILED",
+        "The student's assignments could not be read."
+      );
+      const assignmentIds = (assignmentRows || []).map((row) => row.id);
+      const { resourcePaths, submissionPaths } = await collectAssignmentStorageObjects(context.client, assignmentIds);
+      await removeStorageObjectsBestEffort(context.client, RESOURCE_BUCKET, resourcePaths);
+      await removeStorageObjectsBestEffort(context.client, SUBMISSION_BUCKET, submissionPaths);
+
+      await queryOrFail(
+        context.client.from("students").delete().eq("user_id", userId).select("user_id").single(),
+        "STUDENT_DELETE_FAILED",
+        "The student could not be removed."
+      );
+      return { userId };
+    } catch (error) {
+      return backendFailure(error, "STUDENT_DELETE_FAILED", "The student could not be removed.");
+    }
+  }
+
   global.TEACHING_PORTAL_BACKEND = Object.freeze({
     isConfigured,
     getSession,
@@ -861,6 +1001,10 @@
     setAssignmentStatus,
     addResource,
     reviewSubmission,
-    answerQuestion
+    answerQuestion,
+    setStudentActive,
+    deleteResource,
+    deleteAssignment,
+    deleteStudent
   });
 })(window);

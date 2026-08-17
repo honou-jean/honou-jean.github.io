@@ -19,10 +19,7 @@ window.SITE_DATA = {
   },
 
   documents: {
-    cv: { path: "assets/documents/cv/cv-koessivi-jean-honou.pdf", available: true },
-    thesis: { path: "assets/documents/thesis/memoire-koessivi-jean-honou.pdf", available: true },
-    thesisPresentation: { path: "assets/documents/presentations/soutenance-koessivi-jean-honou.pptx", available: true },
-    thesisPresentationPdf: { path: "assets/documents/presentations/soutenance-koessivi-jean-honou.pdf", available: false }
+    cv: { path: "assets/documents/cv/cv-koessivi-jean-honou.pdf", available: true }
   },
 
   icons: {
@@ -258,11 +255,6 @@ window.SITE_DATA = {
     }
   ],
 
-  thesis: {
-    technologies: ["Python", "FaceNet", "Wav2Vec2.0", "EasyOCR", "Multimodal Fusion", "Tkinter"],
-    relatedProject: "multimodal-biometrics"
-  },
-
   presentations: [],
   certifications: [],
 
@@ -287,6 +279,7 @@ window.SITE_DATA = {
       ],
       documents: [
         { type: "pdf", label: { fr: "Mémoire de master (PDF)", en: "Master's thesis (PDF)" }, href: "assets/documents/thesis/memoire-koessivi-jean-honou.pdf", available: true },
+        { type: "pptx", label: { fr: "Support de soutenance (PPTX)", en: "Defence presentation (PPTX)" }, href: "assets/documents/presentations/soutenance-koessivi-jean-honou.pptx", available: true },
         { type: "repository", label: { fr: "Code source (GitHub)", en: "Source code (GitHub)" }, href: "https://github.com/honou-jean/Projet_de_soutenance", available: true }
       ]
     },

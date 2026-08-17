@@ -242,49 +242,6 @@
     setupProjectCovers(container);
   }
 
-  function unavailableAction(label) {
-    return `<button class="button document-button" type="button" disabled title="${translations[currentLanguage].thesis.unavailable}">${label}</button>`;
-  }
-
-  function renderThesis() {
-    const technologies = $('#thesis-technologies');
-    const actionsContainer = $('#thesis-actions');
-    if (technologies) technologies.innerHTML = data.thesis.technologies.map(technologyBadge).join("");
-    const copy = translations[currentLanguage].thesis;
-    const thesis = data.documents.thesis;
-    const presentationPdf = data.documents.thesisPresentationPdf;
-    const presentation = data.documents.thesisPresentation;
-    const actions = [];
-    if (thesis.available) {
-      actions.push(`<a class="button primary" href="${thesis.path}" target="_blank" rel="noopener noreferrer">${copy.read}</a>`);
-      actions.push(`<a class="button document-button" href="${thesis.path}" download>${copy.download}</a>`);
-    } else {
-      actions.push(unavailableAction(copy.read));
-      actions.push(unavailableAction(copy.download));
-    }
-    if (presentationPdf.available) actions.push(`<a class="button document-button" href="${presentationPdf.path}" target="_blank" rel="noopener noreferrer">${copy.presentation}</a>`);
-    else if (presentation.available) actions.push(`<a class="button document-button" href="${presentation.path}" download>${copy.presentation}</a>`);
-    else actions.push(unavailableAction(copy.presentation));
-    const relatedProject = data.projects.find(project => project.slug === data.thesis.relatedProject);
-    if (relatedProject?.href) actions.push(`<a class="button document-button thesis-project-link arrow-link" href="${relatedProject.href}"><span>${translations[currentLanguage].projects.view}</span><span aria-hidden="true">↗</span></a>`);
-    if (actionsContainer) actionsContainer.innerHTML = actions.join("");
-
-    const researchContainer = $('#thesis-research-sections');
-    const detail = data.projectDetails?.[data.thesis.relatedProject];
-    if (researchContainer && Array.isArray(detail?.sections)) {
-      researchContainer.innerHTML = detail.sections.slice(0, 3).map((section, index) => `
-        <article class="thesis-research-item">
-          <span aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
-          <div><h3>${local(section.title)}</h3><p>${local(section.body)}</p></div>
-        </article>`).join("");
-    }
-    const relatedContainer = $('#thesis-related-project');
-    if (relatedContainer && relatedProject) {
-      relatedContainer.innerHTML = projectCardMarkup(relatedProject);
-      setupProjectCovers(relatedContainer);
-    }
-  }
-
   function renderContact() {
     const linksContainer = $('#contact-links');
     const socialsContainer = $('#contact-socials');
@@ -343,7 +300,6 @@
     renderFilters();
     renderProjects();
     renderFeaturedProjects();
-    renderThesis();
     renderContact();
     renderCv();
   }

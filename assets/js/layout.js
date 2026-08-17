@@ -12,7 +12,6 @@
     { key: "expertise", path: "expertise.html" },
     { key: "background", path: "background.html" },
     { key: "projects", path: "projects.html" },
-    { key: "thesis", path: "thesis.html" },
     { key: "teaching", path: "teaching.html" },
     { key: "contact", path: "contact.html" }
   ];
@@ -33,7 +32,6 @@
         expertise: "Expertise",
         background: "Parcours",
         projects: "Projets",
-        thesis: "Mémoire",
         teaching: "Enseignement",
         contact: "Contact"
       },
@@ -67,7 +65,6 @@
         expertise: "Expertise",
         background: "Background",
         projects: "Projects",
-        thesis: "Thesis",
         teaching: "Teaching",
         contact: "Contact"
       },

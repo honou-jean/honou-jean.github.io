@@ -38,9 +38,10 @@ h1, h2, h3, h4, p { overflow-wrap: anywhere; }
 .section { padding: 116px 0; }
 .section-tight { padding-bottom: 64px; }
 .section-tint { background: var(--tint); }
-.hero-domains { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line); }
-.hero-domains-label { color: #607681; font-size: .68rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-.hero-domains-list > span { color: var(--navy); font-weight: 800; }
+.hero-domains { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--line); }
+.hero-domains-label { color: #607681; font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.hero-domains-list { gap: 10px; }
+.hero-domains-list > span { padding: 9px 17px; border: 1px solid var(--teal-light); border-radius: 99px; background: var(--tint-deep); color: var(--teal-dark); font-size: .84rem; font-weight: 800; }
 .section-dark { background: var(--navy); color: #eef5f5; }
 .hidden { display: none !important; }
 .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }

@@ -69,6 +69,8 @@
         emailPlaceholder: "votre.adresse@exemple.fr",
         password: "Mot de passe",
         passwordPlaceholder: "Votre mot de passe",
+        showPassword: "Afficher le mot de passe",
+        hidePassword: "Masquer le mot de passe",
         submit: "Se connecter",
         pending: "Connexion en cours…",
         back: "Retour à l’accueil du portail",
@@ -268,6 +270,8 @@
         emailPlaceholder: "your.address@example.com",
         password: "Password",
         passwordPlaceholder: "Your password",
+        showPassword: "Show password",
+        hidePassword: "Hide password",
         submit: "Sign in",
         pending: "Signing in…",
         back: "Back to the portal home",
@@ -1841,10 +1845,25 @@
     await updateDashboardAccess();
   }
 
+  function togglePasswordVisibility(event) {
+    const button = event.currentTarget;
+    const input = document.querySelector("#login-password");
+    if (!input) return;
+    const willShow = input.type === "password";
+    input.type = willShow ? "text" : "password";
+    const key = willShow ? "login.hidePassword" : "login.showPassword";
+    button.dataset.portalI18nAria = key;
+    button.setAttribute("aria-label", getCopy(key));
+    button.setAttribute("aria-pressed", String(willShow));
+    button.querySelector("[data-eye-open]")?.toggleAttribute("hidden", willShow);
+    button.querySelector("[data-eye-closed]")?.toggleAttribute("hidden", !willShow);
+  }
+
   function bindEvents() {
     document.querySelectorAll("[data-lang]").forEach((button) => {
       button.addEventListener("click", () => applyLanguage(button.dataset.lang));
     });
+    document.querySelector("#login-password-toggle")?.addEventListener("click", togglePasswordVisibility);
     document.querySelector("#portal-login-form")?.addEventListener("submit", handleLogin);
     document.querySelector("#portal-sign-out")?.addEventListener("click", handleSignOut);
     document.querySelector("#dashboard-retry")?.addEventListener("click", handleDashboardRetry);

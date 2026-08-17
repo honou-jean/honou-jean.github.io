@@ -54,7 +54,13 @@
           </div>
           <div class="portal-field">
             <label for="login-password" data-portal-i18n="login.password">Mot de passe</label>
-            <input id="login-password" name="password" type="password" autocomplete="current-password" maxlength="256" required disabled placeholder="Votre mot de passe" data-portal-i18n-placeholder="login.passwordPlaceholder">
+            <div class="portal-password-wrap">
+              <input id="login-password" name="password" type="password" autocomplete="current-password" maxlength="256" required disabled placeholder="Votre mot de passe" data-portal-i18n-placeholder="login.passwordPlaceholder">
+              <button type="button" class="portal-password-toggle" id="login-password-toggle" aria-pressed="false" data-portal-i18n-aria="login.showPassword" aria-label="Afficher le mot de passe">
+                <svg data-eye-open viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg data-eye-closed hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3l18 18M10.6 10.7a3 3 0 0 0 4.2 4.2M9.3 5.4A10.7 10.7 0 0 1 12 5c6.4 0 10 7 10 7a17.7 17.7 0 0 1-3.2 4.1M6.2 6.2A17.6 17.6 0 0 0 2 12s3.6 7 10 7c1.2 0 2.3-.2 3.4-.5"/></svg>
+              </button>
+            </div>
           </div>
           <button class="button primary portal-submit" type="submit" disabled data-portal-i18n="login.submit">Se connecter</button>
           <p class="portal-form-message" id="login-form-message" role="alert" aria-live="polite" hidden></p>

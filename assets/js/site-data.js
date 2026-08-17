@@ -217,11 +217,11 @@ window.SITE_DATA = {
       media: [],
       category: { fr: "Probabilités • Statistiques", en: "Probability • Statistics" },
       title: { fr: "Processus de Poisson & données réelles", en: "Poisson Processes & Real-World Data" },
-      subtitle: null,
-      description: { fr: "Modélisation stochastique appliquée aux sessions de recharge de véhicules électriques et aux flux urbains.", en: "Stochastic modelling applied to electric-vehicle charging sessions and urban service-request flows." },
-      technologies: ["Python", "NumPy", "pandas", "SciPy", "Matplotlib"],
-      year: null,
-      status: "progress",
+      subtitle: { fr: "Travail d'Étude et de Recherche — Master 1, Université de Lorraine", en: "Research project — Master 1, Université de Lorraine" },
+      description: { fr: "Théorie, simulation R/Python et confrontation du processus de Poisson à deux jeux de données réels : sessions de recharge de véhicules électriques (ACN-Data, Caltech) et signalements municipaux (NYC 311, Bronx).", en: "Theory, R/Python simulation, and testing the Poisson process against two real-world datasets: electric-vehicle charging sessions (ACN-Data, Caltech) and municipal service reports (NYC 311, Bronx)." },
+      technologies: ["Python", "R", "NumPy", "pandas", "SciPy", "Matplotlib"],
+      year: "2025-2026",
+      status: "completed",
       categories: ["statistics"],
       href: "projects/poisson-processes.html"
     }
@@ -261,18 +261,20 @@ window.SITE_DATA = {
       media: [],
       category: { fr: "Probabilités • Statistiques", en: "Probability • Statistics" },
       title: { fr: "Processus de Poisson & données réelles", en: "Poisson Processes & Real-World Data" },
-      lead: { fr: "Modélisation stochastique de données d’événements issues de la recharge électrique et de services urbains.", en: "Stochastic modelling of event data from electric-vehicle charging and urban services." },
-      status: "progress",
-      technologies: ["Python", "NumPy", "pandas", "SciPy", "Matplotlib"],
+      lead: { fr: "Théorie, simulation et confrontation du processus de Poisson à deux jeux de données réels — Travail d'Étude et de Recherche, Master 1 Mathématiques, Université de Lorraine.", en: "Theory, simulation and testing the Poisson process against two real-world datasets — research project, Master 1 Mathematics, Université de Lorraine." },
+      status: "completed",
+      technologies: ["Python", "R", "NumPy", "pandas", "SciPy", "Matplotlib"],
       sections: [
         { title: { fr: "Problématique", en: "Research question" }, body: { fr: "Dans quelle mesure un processus de Poisson homogène décrit-il les événements observés, et comment détecter une intensité variable ou de la surdispersion ?", en: "To what extent can a homogeneous Poisson process describe the observed events, and how can varying intensity or overdispersion be detected?" } },
-        { title: { fr: "Données", en: "Data" }, body: { fr: "ACN-Data documente des sessions de recharge de véhicules électriques ; NYC 311 rassemble des demandes de service urbaines horodatées.", en: "ACN-Data documents electric-vehicle charging sessions; NYC 311 contains timestamped urban service requests." } },
-        { title: { fr: "Méthodologie", en: "Methodology" }, items: [{ fr: "Théorie et simulation des processus de comptage", en: "Counting-process theory and simulation" }, { fr: "Estimation de l’intensité et analyse temporelle", en: "Intensity estimation and temporal analysis" }, { fr: "Comparaison des comportements homogènes et non homogènes", en: "Comparison of homogeneous and non-homogeneous behaviour" }, { fr: "Diagnostic de surdispersion", en: "Overdispersion diagnostics" }] },
-        { title: { fr: "Simulateur interactif", en: "Interactive simulator" }, type: "interactive", component: "poisson-simulator", body: { fr: "Générez une réalisation d’un processus de Poisson homogène ou non homogène et observez ses statistiques se recalculer en direct.", en: "Generate a realization of a homogeneous or non-homogeneous Poisson process and watch its statistics recompute live." }, note: { fr: "Illustration interactive de la méthode, avec des paramètres libres — pas les résultats réels d’ACN-Data ou de NYC 311, qui seront publiés après validation de l’analyse.", en: "An interactive illustration of the method with free parameters — not the real ACN-Data or NYC 311 results, which will be published once the analysis is verified." } },
-        { title: { fr: "État du travail", en: "Current state" }, body: { fr: "Les conclusions et résultats seront publiés après finalisation et validation de l’analyse.", en: "Findings and conclusions will be published after the analysis is completed and verified." } }
+        { title: { fr: "Données", en: "Data" }, body: { fr: "ACN-Data documente des sessions de recharge de véhicules électriques sur un parking du campus Caltech (1 218 sessions retenues après filtrage) ; NYC 311 rassemble les signalements « Traffic Signal Condition » dans le Bronx sur janvier-février 2020 (664 signalements).", en: "ACN-Data documents electric-vehicle charging sessions on a Caltech campus parking lot (1,218 sessions retained after filtering); NYC 311 gathers “Traffic Signal Condition” reports in the Bronx over January–February 2020 (664 reports)." } },
+        { title: { fr: "Méthodologie", en: "Methodology" }, items: [{ fr: "Théorie et simulation des processus de comptage (validée sous R et Python)", en: "Counting-process theory and simulation (validated under both R and Python)" }, { fr: "Estimation de l’intensité et analyse temporelle", en: "Intensity estimation and temporal analysis" }, { fr: "Comparaison des comportements homogènes et non homogènes", en: "Comparison of homogeneous and non-homogeneous behaviour" }, { fr: "Diagnostic de surdispersion", en: "Overdispersion diagnostics" }] },
+        { title: { fr: "Simulateur interactif", en: "Interactive simulator" }, type: "interactive", component: "poisson-simulator", body: { fr: "Générez une réalisation d’un processus de Poisson homogène ou non homogène et observez ses statistiques se recalculer en direct.", en: "Generate a realization of a homogeneous or non-homogeneous Poisson process and watch its statistics recompute live." }, note: { fr: "Illustration interactive de la méthode, avec des paramètres libres — les résultats réels d’ACN-Data et de NYC 311 sont présentés dans la section suivante.", en: "An interactive illustration of the method with free parameters — the real ACN-Data and NYC 311 results are presented in the next section." } },
+        { title: { fr: "Résultats", en: "Results" }, body: { fr: "Le modèle de Poisson homogène est rejeté au seuil de 5 % pour les deux jeux de données : λ̂ ≈ 5,46 sessions/jour actif pour ACN-Data (indice de dispersion ≈ 1,57) et λ̂ ≈ 0,46 signalement/heure pour NYC 311. La stratification par un processus de Poisson non homogène améliore nettement l’ajustement : réduction de la surdispersion de 29,5 % pour ACN-Data (par jour de semaine) et de 10,7 % pour NYC 311 (par heure de la journée, test du chi-deux non rejeté, p ≈ 0,058).", en: "The homogeneous Poisson model is rejected at the 5% level for both datasets: λ̂ ≈ 5.46 sessions per active day for ACN-Data (dispersion index ≈ 1.57) and λ̂ ≈ 0.46 reports per hour for NYC 311. Stratifying with a non-homogeneous Poisson process clearly improves the fit: a 29.5% reduction in overdispersion for ACN-Data (by weekday) and 10.7% for NYC 311 (by hour of day, chi-square test not rejected, p ≈ 0.058)." } }
       ],
       documents: [
-        { type: "pdf", label: { fr: "Rapport du projet", en: "Project report" }, href: "assets/documents/reports/poisson-processes-report.pdf", available: false }
+        { type: "pdf", label: { fr: "Rapport du TER (PDF)", en: "Research report (PDF)" }, href: "assets/documents/ter-poisson/memoire-ter-processus-poisson-honou-koessivi-jean.pdf", available: true },
+        { type: "pdf", label: { fr: "Support de soutenance (PDF)", en: "Presentation slides (PDF)" }, href: "assets/documents/ter-poisson/presentation-ter-processus-poisson.pdf", available: true },
+        { type: "repository", label: { fr: "Code source (GitHub)", en: "Source code (GitHub)" }, href: "https://github.com/honou-jean/processus-poisson-ter", available: false }
       ]
     }
   }

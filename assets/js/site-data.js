@@ -216,8 +216,8 @@ window.SITE_DATA = {
       coverImage: { src: "assets/images/projects/poisson/cover.jpg", alt: { fr: "Câble de recharge branché sur une borne de recharge pour véhicule électrique.", en: "Charging cable plugged into an electric-vehicle charging station." } },
       media: [],
       category: { fr: "Probabilités • Statistiques", en: "Probability • Statistics" },
-      title: { fr: "Processus de Poisson & données réelles", en: "Poisson Processes & Real-World Data" },
-      subtitle: { fr: "Travail d'Étude et de Recherche — Master 1, Université de Lorraine", en: "Research project — Master 1, Université de Lorraine" },
+      title: { fr: "Modélisation des arrivées d’événements par processus de Poisson — Applications à la recharge de véhicules électriques et aux demandes urbaines", en: "Modelling Event Arrivals with the Poisson Process — Applications to Electric-Vehicle Charging and Urban Service Requests" },
+      subtitle: null,
       description: { fr: "Théorie, simulation R/Python et confrontation du processus de Poisson à deux jeux de données réels : sessions de recharge de véhicules électriques (ACN-Data, Caltech) et signalements municipaux (NYC 311, Bronx).", en: "Theory, R/Python simulation, and testing the Poisson process against two real-world datasets: electric-vehicle charging sessions (ACN-Data, Caltech) and municipal service reports (NYC 311, Bronx)." },
       technologies: ["Python", "R", "NumPy", "pandas", "SciPy", "Matplotlib"],
       year: "2025-2026",
@@ -260,8 +260,8 @@ window.SITE_DATA = {
       coverImage: { src: "assets/images/projects/poisson/cover.jpg", alt: { fr: "Câble de recharge branché sur une borne de recharge pour véhicule électrique.", en: "Charging cable plugged into an electric-vehicle charging station." } },
       media: [],
       category: { fr: "Probabilités • Statistiques", en: "Probability • Statistics" },
-      title: { fr: "Processus de Poisson & données réelles", en: "Poisson Processes & Real-World Data" },
-      lead: { fr: "Théorie, simulation et confrontation du processus de Poisson à deux jeux de données réels — Travail d'Étude et de Recherche, Master 1 Mathématiques, Université de Lorraine.", en: "Theory, simulation and testing the Poisson process against two real-world datasets — research project, Master 1 Mathematics, Université de Lorraine." },
+      title: { fr: "Modélisation des arrivées d’événements par processus de Poisson — Applications à la recharge de véhicules électriques et aux demandes urbaines", en: "Modelling Event Arrivals with the Poisson Process — Applications to Electric-Vehicle Charging and Urban Service Requests" },
+      lead: { fr: "Théorie, simulation et confrontation du processus de Poisson à deux jeux de données réels.", en: "Theory, simulation and testing the Poisson process against two real-world datasets." },
       status: "completed",
       technologies: ["Python", "R", "NumPy", "pandas", "SciPy", "Matplotlib"],
       sections: [
@@ -272,9 +272,9 @@ window.SITE_DATA = {
         { title: { fr: "Résultats", en: "Results" }, body: { fr: "Le modèle de Poisson homogène est rejeté au seuil de 5 % pour les deux jeux de données : λ̂ ≈ 5,46 sessions/jour actif pour ACN-Data (indice de dispersion ≈ 1,57) et λ̂ ≈ 0,46 signalement/heure pour NYC 311. La stratification par un processus de Poisson non homogène améliore nettement l’ajustement : réduction de la surdispersion de 29,5 % pour ACN-Data (par jour de semaine) et de 10,7 % pour NYC 311 (par heure de la journée, test du chi-deux non rejeté, p ≈ 0,058).", en: "The homogeneous Poisson model is rejected at the 5% level for both datasets: λ̂ ≈ 5.46 sessions per active day for ACN-Data (dispersion index ≈ 1.57) and λ̂ ≈ 0.46 reports per hour for NYC 311. Stratifying with a non-homogeneous Poisson process clearly improves the fit: a 29.5% reduction in overdispersion for ACN-Data (by weekday) and 10.7% for NYC 311 (by hour of day, chi-square test not rejected, p ≈ 0.058)." } }
       ],
       documents: [
-        { type: "pdf", label: { fr: "Rapport du TER (PDF)", en: "Research report (PDF)" }, href: "assets/documents/ter-poisson/memoire-ter-processus-poisson-honou-koessivi-jean.pdf", available: true },
+        { type: "pdf", label: { fr: "Rapport complet (PDF)", en: "Full report (PDF)" }, href: "assets/documents/ter-poisson/memoire-ter-processus-poisson-honou-koessivi-jean.pdf", available: true },
         { type: "pdf", label: { fr: "Support de soutenance (PDF)", en: "Presentation slides (PDF)" }, href: "assets/documents/ter-poisson/presentation-ter-processus-poisson.pdf", available: true },
-        { type: "repository", label: { fr: "Code source (GitHub)", en: "Source code (GitHub)" }, href: "https://github.com/honou-jean/processus-poisson-ter", available: false }
+        { type: "repository", label: { fr: "Code source (GitHub)", en: "Source code (GitHub)" }, href: "https://github.com/honou-jean/Modelisation-processus-poisson", available: true }
       ]
     }
   }

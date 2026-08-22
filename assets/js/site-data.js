@@ -194,7 +194,8 @@ window.SITE_DATA = {
   filters: [
     { id: "all", fr: "Tous", en: "All" },
     { id: "ai", fr: "Intelligence artificielle", en: "Artificial Intelligence" },
-    { id: "statistics", fr: "Statistiques", en: "Statistics" }
+    { id: "statistics", fr: "Statistiques", en: "Statistics" },
+    { id: "bi", fr: "Business Intelligence", en: "Business Intelligence" }
   ],
 
   projects: [
@@ -231,6 +232,23 @@ window.SITE_DATA = {
       status: "completed",
       categories: ["statistics"],
       href: "projects/poisson-processes.html"
+    },
+    {
+      slug: "dashboard-prets-immobiliers",
+      number: "03",
+      featured: false,
+      theme: "default",
+      coverImage: { src: "assets/images/projects/dashboard-prets-immobiliers/cover.jpg", alt: { fr: "Capture d’écran du dashboard Power BI : historique des demandes de prêts et taux d’acceptation par année.", en: "Screenshot of the Power BI dashboard: loan request history and acceptance rate by year." } },
+      media: [],
+      category: { fr: "Business Intelligence • Power BI", en: "Business Intelligence • Power BI" },
+      title: { fr: "Dashboard de pilotage des prêts immobiliers", en: "Real-Estate Loan Portfolio Dashboard" },
+      subtitle: { fr: "Modélisation de données et DAX pour un réseau d’agences bancaires", en: "Data modelling and DAX for a bank branch network" },
+      description: { fr: "Dashboard Power BI pilotant l’activité de prêts immobiliers d’un réseau d’agences (Crédit Breton) : demandes, taux d’acceptation, performance par agence, et un score emprunteur calculé en DAX.", en: "A Power BI dashboard steering a bank branch network’s (Crédit Breton) real-estate loan activity: requests, acceptance rate, branch performance, and a DAX-calculated borrower score." },
+      technologies: ["Power BI", "DAX"],
+      year: "2026",
+      status: "completed",
+      categories: ["bi"],
+      href: "projects/dashboard-prets-immobiliers.html"
     }
   ],
 
@@ -283,6 +301,48 @@ window.SITE_DATA = {
         { type: "pdf", label: { fr: "Rapport complet (PDF)", en: "Full report (PDF)" }, href: "assets/documents/ter-poisson/memoire-ter-processus-poisson-honou-koessivi-jean.pdf", available: true },
         { type: "pdf", label: { fr: "Support de soutenance (PDF)", en: "Presentation slides (PDF)" }, href: "assets/documents/ter-poisson/presentation-ter-processus-poisson.pdf", available: true },
         { type: "repository", label: { fr: "Code source (GitHub)", en: "Source code (GitHub)" }, href: "https://github.com/honou-jean/Modelisation-processus-poisson", available: true }
+      ]
+    },
+    "dashboard-prets-immobiliers": {
+      number: "03",
+      coverImage: { src: "assets/images/projects/dashboard-prets-immobiliers/cover.jpg", alt: { fr: "Capture d’écran du dashboard Power BI : historique des demandes de prêts et taux d’acceptation par année.", en: "Screenshot of the Power BI dashboard: loan request history and acceptance rate by year." } },
+      media: [
+        { src: "assets/images/projects/dashboard-prets-immobiliers/01-accueil.jpg", alt: { fr: "Page d’accueil du dashboard, avec le mode d’emploi des 4 autres pages.", en: "Dashboard home page, with usage guidance for the other four pages." }, caption: { fr: "Accueil — mode d’emploi", en: "Home — usage guide" } },
+        { src: "assets/images/projects/dashboard-prets-immobiliers/02-demande-de-prets.jpg", alt: { fr: "Historique des demandes de prêts, taux d’acceptation par année et montant moyen des opérations.", en: "Loan request history, yearly acceptance rate and average operation amount." }, caption: { fr: "Demande de prêts", en: "Loan requests" } },
+        { src: "assets/images/projects/dashboard-prets-immobiliers/04-performance-agences.jpg", alt: { fr: "Carte des agences du réseau et comparaison de leur performance.", en: "Map of the branch network and comparison of branch performance." }, caption: { fr: "Performance agences", en: "Branch performance" } },
+        { src: "assets/images/projects/dashboard-prets-immobiliers/03-indicateurs-clients.jpg", alt: { fr: "Synthèse des indicateurs clients.", en: "Client indicators summary." }, caption: { fr: "Indicateurs clients", en: "Client indicators" } },
+        { src: "assets/images/projects/dashboard-prets-immobiliers/05-liste-des-clients.jpg", alt: { fr: "Recherche et fiche d’un client particulier.", en: "Search and record for an individual client." }, caption: { fr: "Liste des clients", en: "Client list" } }
+      ],
+      category: { fr: "Business Intelligence • Power BI", en: "Business Intelligence • Power BI" },
+      title: { fr: "Dashboard de pilotage des prêts immobiliers", en: "Real-Estate Loan Portfolio Dashboard" },
+      subtitle: { fr: "Modélisation de données et DAX pour un réseau d’agences bancaires", en: "Data modelling and DAX for a bank branch network" },
+      lead: { fr: "Dashboard Power BI pilotant l’activité de prêts immobiliers du réseau d’agences Crédit Breton, avec un score emprunteur calculé en DAX pour aider les conseillers à statuer sur l’accord ou le refus d’un prêt.", en: "A Power BI dashboard steering the Crédit Breton branch network’s real-estate loan activity, with a DAX-calculated borrower score to help advisors decide whether to approve a loan." },
+      year: "2026",
+      status: "completed",
+      technologies: ["Power BI", "DAX"],
+      sections: [
+        { title: { fr: "Contexte & objectif", en: "Context & objective" }, body: { fr: "Piloter l’activité de prêts immobiliers d’un réseau de 6 agences : demandes reçues, taux d’acceptation, montants, performance comparée des agences, et suivi individuel des clients. Le dashboard s’ouvre sur une page d’accueil qui sert de mode d’emploi pour les 4 pages d’analyse.", en: "Steer a 6-branch network’s real-estate loan activity: requests received, acceptance rate, amounts, compared branch performance, and individual client tracking. The dashboard opens on a home page that doubles as a usage guide for the four analysis pages." } },
+        { title: { fr: "Modèle de données", en: "Data model" }, body: { fr: "Un modèle relationnel de 5 tables :", en: "A relational model with 5 tables:" }, items: [
+          { fr: "Demandes de prêt — table de faits : date, montant de l’opération, montant prêté, durée, décision, score emprunteur", en: "Loan requests — fact table: date, operation amount, loan amount, duration, decision, borrower score" },
+          { fr: "Situation famille — âge, date de naissance, nombre d’enfants à charge", en: "Family situation — age, date of birth, number of dependent children" },
+          { fr: "Situation pro — régularité des revenus, revenu mensuel moyen", en: "Employment situation — income regularity, average monthly income" },
+          { fr: "Agences — ville, localisation géographique", en: "Branches — city, geographic location" },
+          { fr: "Apport — apport personnel associé à chaque demande", en: "Down payment — personal contribution tied to each request" }
+        ], note: { fr: "Une hiérarchie de dates (Année → Trimestre → Mois → Jour) structure toute l’analyse temporelle.", en: "A date hierarchy (Year → Quarter → Month → Day) structures all time-based analysis." } },
+        { title: { fr: "Score emprunteur calculé en DAX", en: "DAX-calculated borrower score" }, body: { fr: "Une colonne calculée combine 3 critères en cascade pour donner aux conseillers une recommandation immédiate (accord ou refus) sur chaque demande :", en: "A calculated column combines 3 cascading criteria to give advisors an immediate recommendation (approve or reject) on each request:" }, items: [
+          { fr: "Espérance de vie — âge de l’emprunteur ≥ 82 ans → refus", en: "Life expectancy — borrower age ≥ 82 → reject" },
+          { fr: "Régularité des revenus — revenus déclarés « très irréguliers » → refus", en: "Income regularity — income declared “very irregular” → reject" },
+          { fr: "Capacité de remboursement — mensualité du prêt supérieure au revenu mensuel réparti sur le foyer → refus", en: "Repayment capacity — loan instalment exceeding monthly income spread across the household → reject" }
+        ], note: { fr: "La formule combine 3 IF imbriqués et la fonction LOOKUPVALUE pour aller chercher, pour chaque demande, les données du client dans deux tables sans relation active avec la table des demandes.", en: "The formula nests 3 IFs and uses LOOKUPVALUE to fetch, for each request, the client’s data from two tables with no active relationship to the requests table." } },
+        { title: { fr: "Pages du dashboard", en: "Dashboard pages" }, items: [
+          { fr: "Demande de prêts — historique, taux d’acceptation, montant moyen des opérations, dossiers en cours", en: "Loan requests — history, acceptance rate, average operation amount, pending files" },
+          { fr: "Performance agences — carte du réseau, volume et taux d’acceptation par agence", en: "Branch performance — network map, volume and acceptance rate per branch" },
+          { fr: "Indicateurs clients — synthèse par typologie de clients", en: "Client indicators — summary by client type" },
+          { fr: "Liste des clients — recherche et fiche individuelle", en: "Client list — search and individual record" }
+        ] }
+      ],
+      documents: [
+        { type: "repository", label: { fr: "Code source (GitHub)", en: "Source code (GitHub)" }, href: "https://github.com/honou-jean/Dashboard-Prets-Immobiliers", available: true }
       ]
     }
   }

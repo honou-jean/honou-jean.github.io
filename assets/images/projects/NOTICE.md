@@ -6,3 +6,5 @@ Real photographs used as project-card and detail-page cover images, replacing th
 - `poisson/cover.jpg` — [Close-up of an electric car charging station](https://commons.wikimedia.org/wiki/File:Close-up_of_an_electric_car_charging_station.jpg), [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/). Cropped and re-encoded for web delivery.
 
 Both are sourced from Wikimedia Commons and were chosen to avoid featuring identifiable people, brand-heavy scenes, or any claim of depicting the real systems described on this site.
+
+- `dashboard-prets-immobiliers/*.jpg` — real screenshots exported from the Power BI report itself (own work), resized and re-encoded as JPEG for web delivery. Unlike the two entries above, these do depict the actual project.

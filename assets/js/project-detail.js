@@ -387,6 +387,30 @@
         if (list.children.length) copy.append(list);
       }
 
+      const sectionImages = (Array.isArray(section.images) ? section.images : section.image ? [section.image] : [])
+        .map((value) => normalizeMediaItem(value, language, title))
+        .filter(Boolean);
+      if (sectionImages.length) {
+        const mediaGrid = document.createElement("div");
+        mediaGrid.className = "detail-section-media";
+        sectionImages.forEach((item) => {
+          const figure = document.createElement("figure");
+          const image = document.createElement("img");
+          image.src = item.src;
+          image.alt = item.alt;
+          image.loading = "lazy";
+          image.decoding = "async";
+          figure.append(image);
+          if (item.caption) {
+            const caption = document.createElement("figcaption");
+            caption.textContent = item.caption;
+            figure.append(caption);
+          }
+          mediaGrid.append(figure);
+        });
+        copy.append(mediaGrid);
+      }
+
       const noteValue = localize(section.note, language);
       if (noteValue) {
         const note = document.createElement("p");

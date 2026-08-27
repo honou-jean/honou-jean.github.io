@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>CV — Koessivi Jean HONOU — Stage Data Science</title>
+<style>
+  @page { size: A4; margin: 8mm 14mm; }
+  :root {
+    --navy: #0b1f33;
+    --teal: #176675;
+    --ink: #1a1a1a;
+    --slate: #4a4a4a;
+    --line: #cfcfcf;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: #fff;
+    color: var(--ink);
+    font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+    font-size: 8.6pt;
+    line-height: 1.19;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page { width: 210mm; min-height: 297mm; margin: 0 auto; padding: 6mm 14mm; }
+
+  header.cv-header { margin-bottom: 5pt; text-align: center; }
+  h1 {
+    margin: 0 0 3pt;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: 20pt;
+    letter-spacing: .01em;
+    color: var(--ink);
+  }
+  .headline {
+    margin: 0 0 4pt;
+    font-size: 9.6pt;
+    font-weight: 700;
+    color: var(--teal);
+  }
+  .contact-line {
+    margin: 0;
+    font-size: 8.4pt;
+    color: var(--slate);
+  }
+  .contact-line a { color: var(--teal); text-decoration: underline; }
+  .contact-line span.sep { color: var(--line); margin: 0 5pt; }
+  .contact-line + .contact-line { margin-top: 1pt; }
+
+  section.block { margin-top: 5pt; }
+  h2 {
+    margin: 0 0 2pt;
+    padding-bottom: 1pt;
+    border-bottom: 1.1pt solid var(--navy);
+    font-size: 9.4pt;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  p.profil { margin: 0; color: var(--ink); text-align: justify; }
+
+  .entry { margin-bottom: 3.5pt; }
+  .entry:last-child { margin-bottom: 0; }
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10pt;
+  }
+  .entry-title { font-weight: 700; color: var(--ink); }
+  .entry-title .org-inline { font-weight: 400; color: var(--slate); }
+  .entry-period { font-size: 8.1pt; color: var(--slate); white-space: nowrap; font-weight: 700; }
+  .entry-period a.entry-link { font-weight: 700; color: var(--teal); text-decoration: none; }
+  .entry-sub { margin: 0 0 1pt; font-size: 8.2pt; color: var(--slate); }
+  .entry-sub .org-name { font-style: italic; }
+  .entry-body { margin: 0; color: var(--ink); }
+  .entry-body.list { margin: 1.5pt 0 0; padding-left: 12pt; }
+  .entry-body.list li { margin-bottom: 1pt; }
+
+  .skills-grid { display: block; }
+  .skill-row { margin-bottom: 1.5pt; }
+  .skill-row:last-child { margin-bottom: 0; }
+  .skill-cat { font-weight: 700; color: var(--navy); }
+
+  .langs { display: flex; gap: 26pt; }
+
+  @media print {
+    .page { margin: 0; }
+    a { color: inherit; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="cv-header">
+    <h1>Koessivi Jean HONOU</h1>
+    <p class="headline">Stage Data Science &middot; Data Analyst &middot; Risk Analyst &middot; Intelligence Artificielle</p>
+    <p class="contact-line">
+      Metz, Grand Est, France<span class="sep">|</span><a href="tel:+33753729962">07&nbsp;53&nbsp;72&nbsp;99&nbsp;62</a><span class="sep">|</span><a href="mailto:honou84@gmail.com">honou84@gmail.com</a><span class="sep">|</span>Stage &agrave; partir de mars&nbsp;2027
+    </p>
+    <p class="contact-line">
+      <a href="https://linkedin.com/in/koessivi-jean-honou">linkedin.com/in/koessivi-jean-honou</a><span class="sep">|</span><a href="https://github.com/honou-jean">github.com/honou-jean</a><span class="sep">|</span><a href="https://honou-jean.github.io">honou-jean.github.io</a>
+    </p>
+  </header>
+
+  <section class="block">
+    <h2>Profil</h2>
+    <p class="profil">Double formation en Intelligence Artificielle &amp; Big Data et en math&eacute;matiques appliqu&eacute;es, avec un Master 1 Math&eacute;matiques et Applications valid&eacute;. Exp&eacute;rience en analyse de donn&eacute;es, mod&eacute;lisation statistique et stochastique, Machine Learning, Business Intelligence et biom&eacute;trie multimodale. Recherche un stage d&egrave;s mars 2027 comme Data Scientist, Data Analyst ou Risk Analyst, notamment en banque, assurance, finance ou &eacute;nergie.</p>
+  </section>
+
+  <section class="block">
+    <h2>Projets Data s&eacute;lectionn&eacute;s</h2>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Identification biom&eacute;trique multimodale (visage, voix, OCR)</span>
+        <span class="entry-period">2025 &nbsp;|&nbsp; <a class="entry-link" href="https://github.com/honou-jean/Projet_de_soutenance">Voir le projet</a></span>
+      </div>
+      <div class="entry-sub">Python &middot; FaceNet &middot; Wav2Vec 2.0 &middot; EasyOCR &middot; Tkinter</div>
+      <ul class="entry-body list">
+        <li>Architecture de d&eacute;cision multimodale avec fusion de scores, valid&eacute;e sur 10 sujets, 500 images par test facial et 30 &eacute;chantillons vocaux.</li>
+        <li>R&eacute;sultats mesur&eacute;s&nbsp;: pr&eacute;cision faciale 85&nbsp;%, reconnaissance vocale 93,3&nbsp;% au calme (70&nbsp;% avec bruit) et extraction OCR 88&nbsp;%.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Mod&eacute;lisation de flux d&rsquo;&eacute;v&eacute;nements par processus de Poisson</span>
+        <span class="entry-period">2025-2026 &nbsp;|&nbsp; <a class="entry-link" href="https://github.com/honou-jean/Modelisation-processus-poisson">Voir le projet</a></span>
+      </div>
+      <div class="entry-sub">Python &middot; R &middot; NumPy &middot; pandas &middot; SciPy &middot; Matplotlib</div>
+      <ul class="entry-body list">
+        <li>Analyse de 1&nbsp;218 sessions de recharge ACN-Data et de 664 signalements NYC 311&nbsp;; taux estim&eacute; &lambda; &asymp; 5,46 sessions/jour actif (dispersion &asymp; 1,57) et &lambda; &asymp; 0,46 signalement/heure.</li>
+        <li>Rejet du mod&egrave;le de Poisson homog&egrave;ne au seuil de 5&nbsp;%&nbsp;; la stratification non homog&egrave;ne r&eacute;duit la surdispersion de 29,5&nbsp;% (ACN-Data) et 10,7&nbsp;% (NYC 311, test du chi-deux&nbsp;: p &asymp; 0,058).</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Dashboard de pilotage des pr&ecirc;ts immobiliers</span>
+        <span class="entry-period">2026 &nbsp;|&nbsp; <a class="entry-link" href="https://github.com/honou-jean/Dashboard-Prets-Immobiliers">Voir le projet</a></span>
+      </div>
+      <div class="entry-sub">Power BI &middot; DAX &middot; Mod&eacute;lisation relationnelle</div>
+      <ul class="entry-body list">
+        <li>Dashboard de 4 pages pour 200 demandes, 21&nbsp;991&nbsp;097&nbsp;&euro; d&rsquo;op&eacute;rations et 6 agences&nbsp;; taux d&rsquo;acceptation de 64,71&nbsp;% &agrave; 81,48&nbsp;% selon l&rsquo;agence.</li>
+        <li>Mod&egrave;le relationnel de 5 tables et score emprunteur DAX automatisant ACCEPTE/REFUS &agrave; partir de 3 crit&egrave;res imbriqu&eacute;s et de LOOKUPVALUE.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Exp&eacute;rience professionnelle</h2>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Intervenant p&eacute;dagogique en math&eacute;matiques - Compl&eacute;tude <span class="org-inline">| Metz, France</span></span>
+        <span class="entry-period">Nov. 2025 - aujourd&rsquo;hui</span>
+      </div>
+      <ul class="entry-body list">
+        <li>Accompagnement individualis&eacute; d&rsquo;&eacute;l&egrave;ves du secondaire, exercices cibl&eacute;s, pr&eacute;paration aux &eacute;valuations et suivi de la progression.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Superviseur TIC - Projet national d&rsquo;identification biom&eacute;trique <span class="org-inline">| Togo</span></span>
+        <span class="entry-period">D&eacute;c. 2024 - Juin 2025</span>
+      </div>
+      <ul class="entry-body list">
+        <li>Supervision du d&eacute;ploiement biom&eacute;trique sur plus de 15 sites&nbsp;; support niveau 2, contr&ocirc;le qualit&eacute; des donn&eacute;es et gestion des incidents.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Stagiaire en Intelligence Artificielle - Biom&eacute;trie multimodale <span class="org-inline">| LPMCS &amp; LARSI - Togo</span></span>
+        <span class="entry-period">Mars 2024 - Sept. 2024</span>
+      </div>
+      <ul class="entry-body list">
+        <li>D&eacute;veloppement d&rsquo;un syst&egrave;me FaceNet, Wav2Vec 2.0 et EasyOCR, avec fusion des scores pour la d&eacute;cision d&rsquo;identification.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Comp&eacute;tences cl&eacute;s</h2>
+    <div class="skills-grid">
+      <div class="skill-row"><span class="skill-cat">Data Science &amp; statistiques&nbsp;: </span>Analyse exploratoire, inf&eacute;rence, tests, mod&eacute;lisation statistique/pr&eacute;dictive, validation de mod&egrave;les, processus de Poisson, scoring et analyse de risque.</div>
+      <div class="skill-row"><span class="skill-cat">Programmation &amp; BI&nbsp;: </span>Python (pandas, NumPy, SciPy, Matplotlib), SQL, R, Power BI, DAX, mod&eacute;lisation relationnelle, dashboards, Git/GitHub.</div>
+      <div class="skill-row"><span class="skill-cat">Intelligence artificielle&nbsp;: </span>Machine Learning, Deep Learning, vision par ordinateur, FaceNet, Wav2Vec 2.0, EasyOCR, OCR et fusion multimodale.</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Formation</h2>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Master 1 Math&eacute;matiques et Applications - Valid&eacute;</span>
+        <span class="entry-period">2025-2026</span>
+      </div>
+      <div class="entry-sub"><span class="org-name">Universit&eacute; de Lorraine, UFR MIM - Metz, France</span> | Probabilit&eacute;s, statistiques, mod&eacute;lisation stochastique, optimisation.</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Master conjoint Intelligence Artificielle et Big Data - Mention Bien</span>
+        <span class="entry-period">2022-2025</span>
+      </div>
+      <div class="entry-sub"><span class="org-name">UTBM (France) &amp; Universit&eacute; de Lom&eacute; (Togo)</span> | Machine Learning, Deep Learning, vision par ordinateur, Big Data.</div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head">
+        <span class="entry-title">Licence fondamentale en Math&eacute;matiques - Mention Assez Bien</span>
+        <span class="entry-period">2016-2020</span>
+      </div>
+      <div class="entry-sub"><span class="org-name">Universit&eacute; de Lom&eacute; - Togo</span> | Analyse, alg&egrave;bre, probabilit&eacute;s, statistiques.</div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Langues</h2>
+    <div class="langs">
+      <div><strong>Fran&ccedil;ais</strong>&nbsp;: courant</div>
+      <div><strong>Anglais</strong>&nbsp;: B1 - Linguaskill Business</div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

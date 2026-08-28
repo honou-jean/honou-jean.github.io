@@ -62,9 +62,23 @@
     }));
   }
 
+  function dampedSinePoints() {
+    const samples = 40;
+    const points = [];
+    for (let i = 0; i <= samples; i += 1) {
+      const x = i / samples;
+      const y = 0.5 - 0.42 * Math.exp(-x * 2.6) * Math.sin(x * Math.PI * 3.1);
+      points.push(`${(x * 100).toFixed(2)},${(y * 100).toFixed(2)}`);
+    }
+    return points.join(" ");
+  }
+
   function generatedVisualMarkup(generator) {
     if (generator === "poisson-scatter") {
       return poissonScatterPoints().map(point => `<i style="--x:${point.x};--y:${point.y}"></i>`).join("");
+    }
+    if (generator === "damped-sine") {
+      return `<svg class="wave-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline points="${dampedSinePoints()}"></polyline></svg>`;
     }
     return "";
   }

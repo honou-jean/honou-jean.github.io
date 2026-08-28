@@ -92,6 +92,16 @@ window.SITE_DATA = {
           { tag: "span", className: "axis y" }
         ]
       }
+    },
+    scientific: {
+      visual: {
+        className: "visual-numerical",
+        label: "u(x,t)",
+        generator: "damped-sine",
+        elements: [
+          { tag: "span", className: "mesh" }
+        ]
+      }
     }
   },
 
@@ -195,7 +205,8 @@ window.SITE_DATA = {
     { id: "all", fr: "Tous", en: "All" },
     { id: "ai", fr: "Intelligence artificielle", en: "Artificial Intelligence" },
     { id: "statistics", fr: "Statistiques", en: "Statistics" },
-    { id: "bi", fr: "Business Intelligence", en: "Business Intelligence" }
+    { id: "bi", fr: "Business Intelligence", en: "Business Intelligence" },
+    { id: "scientific-computing", fr: "Calcul scientifique", en: "Scientific Computing" }
   ],
 
   projects: [
@@ -249,6 +260,23 @@ window.SITE_DATA = {
       status: "completed",
       categories: ["bi"],
       href: "projects/dashboard-prets-immobiliers.html"
+    },
+    {
+      slug: "scientific-computing",
+      number: "04",
+      featured: false,
+      theme: "scientific",
+      coverImage: { src: "assets/images/projects/scientific-computing/cover.jpg", alt: { fr: "Vagues déferlant sur des rochers, une image du phénomène ondulatoire modélisé.", en: "Waves breaking over rocks, a real-world instance of the wave phenomenon being modelled." } },
+      media: [],
+      category: { fr: "Mathématiques appliquées", en: "Applied Mathematics" },
+      title: { fr: "Calcul scientifique & modélisation numérique", en: "Scientific Computing & Numerical Modelling" },
+      subtitle: null,
+      description: { fr: "Étude de méthodes numériques pour les EDP : schéma de Lax-Wendroff, stabilité CFL, éléments finis et maillages DistMesh.", en: "Study of numerical methods for PDEs: Lax–Wendroff scheme, CFL stability, finite elements and DistMesh meshes." },
+      technologies: ["MATLAB", "DistMesh"],
+      year: null,
+      status: "progress",
+      categories: ["scientific-computing"],
+      href: "projects/scientific-computing.html"
     }
   ],
 
@@ -354,6 +382,25 @@ window.SITE_DATA = {
       ],
       documents: [
         { type: "repository", label: { fr: "Code source (GitHub)", en: "Source code (GitHub)" }, href: "https://github.com/honou-jean/Dashboard-Prets-Immobiliers", available: true }
+      ]
+    },
+    "scientific-computing": {
+      number: "04",
+      coverImage: { src: "assets/images/projects/scientific-computing/cover.jpg", alt: { fr: "Vagues déferlant sur des rochers, une image du phénomène ondulatoire modélisé.", en: "Waves breaking over rocks, a real-world instance of the wave phenomenon being modelled." } },
+      media: [],
+      category: { fr: "Mathématiques appliquées", en: "Applied Mathematics" },
+      title: { fr: "Calcul scientifique & modélisation numérique", en: "Scientific Computing & Numerical Modelling" },
+      lead: { fr: "Travaux autour de la résolution numérique d’équations aux dérivées partielles et de la stabilité des schémas.", en: "Work on numerical solutions of partial differential equations and numerical-scheme stability." },
+      status: "progress",
+      technologies: ["MATLAB", "DistMesh"],
+      sections: [
+        { title: { fr: "Axes étudiés", en: "Topics studied" }, items: [{ fr: "Schéma de Lax-Wendroff", en: "Lax–Wendroff scheme" }, { fr: "Condition de stabilité CFL", en: "CFL stability condition" }, { fr: "Méthode des éléments finis", en: "Finite-element method" }, { fr: "Génération de maillages avec DistMesh", en: "Mesh generation with DistMesh" }] },
+        { title: { fr: "Approche", en: "Approach" }, body: { fr: "Mettre en relation formulation mathématique, discrétisation, implémentation MATLAB et analyse du comportement numérique.", en: "Connecting mathematical formulation, discretisation, MATLAB implementation and analysis of numerical behaviour." } },
+        { title: { fr: "Démonstration de la stabilité CFL", en: "CFL stability demonstration" }, type: "interactive", component: "cfl-stability", body: { fr: "Une équation d’advection intégrée par le schéma de Lax-Wendroff, calculée dans le navigateur. Augmentez ν au-delà de 1 pour observer une vraie divergence numérique.", en: "An advection equation integrated with the Lax-Wendroff scheme, computed in the browser. Push ν above 1 to watch a genuine numerical blow-up." } },
+        { title: { fr: "Résultats", en: "Results" }, body: { fr: "Les résultats, figures et comparaisons seront ajoutés uniquement à partir des travaux validés.", en: "Results, figures and comparisons will only be added from verified work." } }
+      ],
+      documents: [
+        { type: "pdf", label: { fr: "Rapport du projet", en: "Project report" }, href: "assets/documents/reports/scientific-computing-report.pdf", available: false }
       ]
     }
   }

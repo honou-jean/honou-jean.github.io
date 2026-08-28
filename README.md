@@ -78,7 +78,9 @@ Ce tableau est réservé à la gestion future des documents : il n’est pas ren
 Les chemins préparés sont :
 
 ```text
+assets/documents/reports/multimodal-biometrics-report.pdf
 assets/documents/reports/poisson-processes-report.pdf
+assets/documents/reports/scientific-computing-report.pdf
 ```
 
 Après avoir ajouté le vrai PDF, recherchez son entrée dans `projectDetails.<slug>.documents` dans `assets/js/site-data.js`, puis passez uniquement son champ `available` de `false` à `true`. Ne changez jamais cette valeur avant que le fichier existe réellement.
@@ -241,12 +243,13 @@ portfolio-jean/
 │   ├── icons/{technologies,socials}/
 │   ├── images/
 │   │   ├── profile/
-│   │   └── projects/{biometrics,poisson,future-projects}/
+│   │   └── projects/{biometrics,poisson,scientific-computing,future-projects}/
 │   └── documents/{cv,thesis,reports,presentations}/
 ├── projects/
 │   ├── _project-template.html
 │   ├── multimodal-biometrics.html
-│   └── poisson-processes.html
+│   ├── poisson-processes.html
+│   └── scientific-computing.html
 ├── supabase/
 │   ├── migrations/202608140001_student_portal.sql
 │   ├── seed.example.sql

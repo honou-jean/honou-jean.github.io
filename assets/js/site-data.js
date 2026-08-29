@@ -391,7 +391,7 @@ window.SITE_DATA = {
       category: { fr: "Mathématiques appliquées", en: "Applied Mathematics" },
       title: { fr: "Résolution d’un problème de réaction-diffusion par éléments finis", en: "Solving a Reaction–Diffusion Problem with the Finite Element Method" },
       subtitle: { fr: "Maillages DistMesh, assemblage éléments finis P1 et validation de la convergence", en: "DistMesh meshing, P1 finite-element assembly and convergence validation" },
-      lead: { fr: "Projet de calcul scientifique (Master 1 Mathématiques, Université de Lorraine), réalisé en binôme avec Koffi Dosseh Sardou : résoudre par éléments finis un problème elliptique de réaction-diffusion sur un domaine à géométrie non triviale.", en: "A scientific-computing project (Master 1 Mathematics, Université de Lorraine), completed with Koffi Dosseh Sardou: solving an elliptic reaction–diffusion problem by the finite element method on a non-trivial domain." },
+      lead: { fr: "Projet de calcul scientifique (Master 1 Mathématiques, Université de Lorraine) : résoudre par éléments finis un problème elliptique de réaction-diffusion sur un domaine à géométrie non triviale.", en: "A scientific-computing project (Master 1 Mathematics, Université de Lorraine): solving an elliptic reaction–diffusion problem by the finite element method on a non-trivial domain." },
       status: "completed",
       technologies: ["MATLAB", "DistMesh"],
       sections: [

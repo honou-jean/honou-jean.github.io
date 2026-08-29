@@ -45,25 +45,19 @@ Le CV actif se trouve sous `assets/documents/cv/cv-koessivi-jean-honou.pdf` et `
 
 Pour le remplacer, conservez ce chemin. Les appels à l’action du Hero, du Contact et du pied de page restent visibles mais désactivés, sans lien cassé, si cette valeur repasse à `false`.
 
-## Ajouter le mémoire et la soutenance
+## Ajouter un rapport et une présentation
 
-Fichiers actifs :
+Fichiers actifs pour le projet de biométrie multimodale :
 
 ```text
-assets/documents/thesis/memoire-koessivi-jean-honou.pdf
-assets/documents/presentations/soutenance-koessivi-jean-honou.pptx
+assets/documents/reports/multimodal-biometrics-report.pdf
+assets/documents/presentations/multimodal-biometrics-presentation.pptx
 ```
 
-Leurs drapeaux sont actifs dans `assets/js/site-data.js` :
+Leurs entrées sont actives dans `projectDetails["multimodal-biometrics"].documents` (`assets/js/site-data.js`), chacune avec `available: true`.
 
-- mémoire PDF : `documents.thesis.available: true` ;
-- soutenance PPTX : `documents.thesisPresentation.available: true`.
-
-La variante PDF facultative `assets/documents/presentations/soutenance-koessivi-jean-honou.pdf` n’existe pas encore et `documents.thesisPresentationPdf.available` reste donc à `false`.
-
-- Le PDF du mémoire est ouvert dans le navigateur ou téléchargé.
-- Une présentation `.pptx` est uniquement téléchargée.
-- Si une version PDF de la soutenance existe, elle est utilisée pour la consultation dans le navigateur.
+- Le rapport PDF est ouvert dans le navigateur ou téléchargé.
+- Une présentation `.pptx` est uniquement téléchargée ; si une version PDF de la présentation existe, elle est utilisée pour la consultation dans le navigateur.
 
 ## Ajouter une présentation
 

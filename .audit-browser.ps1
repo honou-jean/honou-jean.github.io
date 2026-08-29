@@ -604,8 +604,8 @@ try {
   const paths = [
     'assets/images/profile/portrait-koessivi-jean-honou.png',
     'assets/documents/cv/cv-koessivi-jean-honou.pdf',
-    'assets/documents/thesis/memoire-koessivi-jean-honou.pdf',
-    'assets/documents/presentations/soutenance-koessivi-jean-honou.pptx'
+    'assets/documents/reports/multimodal-biometrics-report.pdf',
+    'assets/documents/presentations/multimodal-biometrics-presentation.pptx'
   ];
   return Promise.all(paths.map(async path => {
     const response = await fetch(path, { cache: 'no-store' });

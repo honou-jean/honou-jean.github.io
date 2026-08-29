@@ -404,7 +404,8 @@ window.SITE_DATA = {
         ] }
       ],
       documents: [
-        { type: "pdf", label: { fr: "Rapport du projet (PDF)", en: "Project report (PDF)" }, href: "assets/documents/reports/scientific-computing-report.pdf", available: true }
+        { type: "pdf", label: { fr: "Rapport du projet (PDF)", en: "Project report (PDF)" }, href: "assets/documents/reports/scientific-computing-report.pdf", available: true },
+        { type: "repository", label: { fr: "Code source (GitHub)", en: "Source code (GitHub)" }, href: "https://github.com/honou-jean/Calcul-Scientifique", available: true }
       ]
     }
   }
